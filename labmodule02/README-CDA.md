@@ -12,6 +12,10 @@ What does your implementation do?
 
 How does your implementation work?
 
+- PIOT-CDA-02-000: Branch "labmodule02" created.
+- PIOT-CDA-02-001: he new ConstrainedDeviceApp module was created by maintaining the architecture provided in the source code. Both the unit test "ConfigUtilTest" and the integration test "ConstrainedDeviceAppTest" have passed successfully.
+- 
+
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
