@@ -15,6 +15,7 @@ How does your implementation work?
 - PIOT-CDA-02-000: Branch "labmodule02" created.
 - PIOT-CDA-02-001: he new ConstrainedDeviceApp module was created by maintaining the architecture provided in the source code. Both the unit test "ConfigUtilTest" and the integration test "ConstrainedDeviceAppTest" have passed successfully.
 - PIOT-CDA-02-002: To create the new SystemPerformanceManager module, the provided architecture was used. The SystemPerformanceManager class was implemented with a constructor that initializes the poll rate and location ID using ConfigUtil and declares the dataMsgListener variable. Additionally, the startManager and stopManager methods were implemented to log when the manager starts and stops. The integration test 'SystemPerformanceManagerTest' passes successfully.
+- PIOT-CDA-02-003 -> Within the CDA, an instance of SystemPerformanceManager was implemented to connect both modules within the architecture. The startApp and stopApp methods were edited to include the initialization and termination of the SystemPerformanceManager. The integration test 'ConstrainedDeviceAppTest' passes successfully, generating the expected output.
 
 ### Code Repository and Branch
 
