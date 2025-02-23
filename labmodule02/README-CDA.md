@@ -9,9 +9,36 @@ Be sure to implement all the PIOT-CDA-* issues (requirements).
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
 What does your implementation do? 
+The implementation enhances the Constrained Device Application (CDA) by integrating a system performance monitoring module. This module continuously collects CPU and memory utilization metrics from the local system, allowing the application to monitor its resource usage over time. The SystemPerformanceManager is responsible for managing these monitoring tasks, ensuring they run at regular intervals and can be started or stopped as needed. Additionally, the implementation includes unit and integration tests to verify that all components function correctly. Finally, the completed work was merged into the primary branch for integration with the main project.
 
 How does your implementation work?
+The implementation consists of multiple components working together:  
 
+1. **Base System Utility Class (`BaseSystemUtilTask`)**  
+   - Defines a generic template for collecting telemetry values.
+   - Provides a structure that specialized system monitoring tasks can inherit.
+
+2. **CPU and Memory Monitoring Tasks (`SystemCpuUtilTask` & `SystemMemUtilTask`)**  
+   - Extend `BaseSystemUtilTask` to implement system-specific telemetry retrieval.
+   - Use the **`psutil`** library to fetch CPU and memory utilization percentages.
+
+3. **System Performance Manager (`SystemPerformanceManager`)**  
+   - Instantiates the CPU and memory monitoring tasks.
+   - Uses **`apscheduler`** to execute these tasks at configurable time intervals.
+   - Implements methods to **start** and **stop** the scheduler, controlling when system metrics are collected.
+
+4. **Integration with the Main Application (`ConstrainedDeviceApp`)**  
+   - The **SystemPerformanceManager** instance is created within the CDA.
+   - The application **starts and stops** performance monitoring alongside its own lifecycle.
+   - Ensures that system telemetry data is collected while the application is running.
+
+5. **Testing & Validation**  
+   - Unit tests ensure that CPU and memory utilization tasks function correctly.
+   - Integration tests verify that `SystemPerformanceManager` correctly schedules and executes telemetry collection.
+   - All tests were executed and passed before merging the changes into the primary branch.
+
+
+Steps:
 - PIOT-CDA-02-000: Branch "labmodule02" created.
 - PIOT-CDA-02-001: he new ConstrainedDeviceApp module was created by maintaining the architecture provided in the source code. Both the unit test "ConfigUtilTest" and the integration test "ConstrainedDeviceAppTest" have passed successfully.
 - PIOT-CDA-02-002: To create the new SystemPerformanceManager module, the provided architecture was used. The SystemPerformanceManager class was implemented with a constructor that initializes the poll rate and location ID using ConfigUtil and declares the dataMsgListener variable. Additionally, the startManager and stopManager methods were implemented to log when the manager starts and stops. The integration test 'SystemPerformanceManagerTest' passes successfully.
