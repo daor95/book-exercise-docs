@@ -17,6 +17,7 @@ How does your implementation work?
 - PIOT-CDA-02-002: To create the new SystemPerformanceManager module, the provided architecture was used. The SystemPerformanceManager class was implemented with a constructor that initializes the poll rate and location ID using ConfigUtil and declares the dataMsgListener variable. Additionally, the startManager and stopManager methods were implemented to log when the manager starts and stops. The integration test 'SystemPerformanceManagerTest' passes successfully.
 - PIOT-CDA-02-003: Within the CDA, an instance of SystemPerformanceManager was implemented to connect both modules within the architecture. The startApp and stopApp methods were edited to include the initialization and termination of the SystemPerformanceManager. The integration test 'ConstrainedDeviceAppTest' passes successfully, generating the expected output.
 - PIOT-CDA-02-004: Two parameters were added to the constructor of the BaseSystemUtilTask class, along with two getter methods for each parameter (name and typeID). Additionally, the getTelemetryValue method was left as provided in the source code since it will be implemented in later phases. No tests were required to be executed for this class.
+- PIOT-CDA-02-005: The SystemCpuUtilTask class was implemented to collect CPU utilization metrics from the local system. The getTelemetryValue method, previously left unimplemented, was now defined to return the system's CPU usage using the psutil library. The unit test SystemCpuUtilTaskTest was executed successfully, confirming the correct functionality by returning the percentage of CPU utilized.
 
 ### Code Repository and Branch
 
@@ -31,7 +32,7 @@ NOTE: The instructor will execute your unit tests. You only need to list each te
 since you need to ensure you haven't introduced regressions.
 
 - ConfigUtilTest
-- 
+- SystemCpuUtilTaskTest
 - 
 
 ### Integration Tests Executed
