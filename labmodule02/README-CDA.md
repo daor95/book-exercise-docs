@@ -9,9 +9,12 @@ Be sure to implement all the PIOT-CDA-* issues (requirements).
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
 What does your implementation do? 
+
 The implementation enhances the Constrained Device Application (CDA) by integrating a system performance monitoring module. This module continuously collects CPU and memory utilization metrics from the local system, allowing the application to monitor its resource usage over time. The SystemPerformanceManager is responsible for managing these monitoring tasks, ensuring they run at regular intervals and can be started or stopped as needed. Additionally, the implementation includes unit and integration tests to verify that all components function correctly. Finally, the completed work was merged into the primary branch for integration with the main project.
 
+
 How does your implementation work?
+
 The implementation consists of multiple components working together:  
 
 1. **Base System Utility Class (`BaseSystemUtilTask`)**  
