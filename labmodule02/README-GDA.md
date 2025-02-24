@@ -16,6 +16,7 @@ Steps:
 
 - PIOT-GDA-02-000: New branch "labmodule02" created.
 - PIOT-GDA-02-001: Implemented the `GatewayDeviceApp` class with required methods for starting, stopping, and initializing the application. Added logging for key operations and error handling using `try/catch` blocks. Integrated `initConfig` and `parseArgs` methods as placeholders for future enhancements. Implemented a `main` method to execute the app with a 65-second run cycle. Successfully ran unit and integration tests, confirming correct functionality. The methods were already implemented, the only thing done was to review the code and execute the tests.
+- PIOT-GDA-02-002: Developed the `SystemPerformanceManager` module, responsible for scheduling system performance data collection tasks. Added a static variable `pollRate` and a logging instance for tracking execution. Implemented the `startManager` and `stopManager` methods to log when the manager starts and stops. The constructor initializes `pollRate` by retrieving the value from `ConfigConst.POLL_CYCLES_KEY` in the `ConfigConst.GATEWAY_DEVICE` section using `ConfigUtil`; if undefined, it defaults to `ConfigConst.DEFAULT_POLL_CYCLES`. Successfully passed the `SystemPerformanceManagerTest` integration test, producing the expected output.
 
 
 ### Code Repository and Branch
@@ -43,7 +44,7 @@ your code to ensure it's correct. As for the tests you execute, you only need to
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - GatewayDeviceAppTest
-- 
+- SystemPerformanceManagerTest
 - 
 
 EOF.
