@@ -21,6 +21,7 @@ Steps:
 - PIOT-GDA-02-004: Developed the `BaseSystemUtilTask` class in the system package to serve as the foundation for all system performance tasks. The class includes two core attributes: `name` (defaulting to a constant value) and `typeID` (defaulting to a defined default). A constructor initializes these variables, and getter methods provide access to them. An abstract method `getTelemetryValue()` is defined, requiring subclasses to implement the logic for retrieving telemetry data. This implementation establishes a common structure for future performance tasks.
 - PIOT-GDA-02-005: Developed the `SystemCpuUtilTask` module by extending `BaseSystemUtilTask` to measure CPU utilization. The class imports necessary libraries and uses the `OperatingSystemMXBean` from `ManagementFactory` to retrieve the system load average, which is then returned as a float. This method effectively captures CPU performance metrics for systems that support this functionality. The implementation meets the requirements and passes the corresponding unit tests, validating correct behavior on supported operating systems.
 - PIOT-GDA-02-006: Implemented the `SystemMemUtilTask` class by extending `BaseSystemUtilTask` to monitor JVM memory usage. The task retrieves heap memory statistics using the `ManagementFactory.getMemoryMXBean()`, calculates the percentage of memory used relative to the maximum available, and logs the computed value. The resulting memory utilization is returned as a float, ensuring compatibility with the expected telemetry format. This implementation successfully meets the functional requirements and passes all associated unit tests.
+- PIOT-GDA-02-007: Integrated the performance monitoring tasks into the SystemPerformanceManager. In this update, both the SystemCpuUtilTask and SystemMemUtilTask are instantiated within the manager's constructor, and a ScheduledExecutorService is set up using a configurable poll rate. A dedicated Runnable (taskRunner) periodically calls the handleTelemetry() method, which retrieves and logs the CPU and memory utilization metrics. The startManager() method schedules this recurring task, while the stopManager() method properly shuts down the scheduler. Integration tests confirm that telemetry data is collected and logged as expected.
 
 
 ### Code Repository and Branch
@@ -37,8 +38,8 @@ NOTE: The instructor will execute your unit tests. You only need to list each te
 since you need to ensure you haven't introduced regressions.
 
 - ConfigUtilTest
-- 
-- 
+- SystemCpuUtilTaskTest
+- SystemMemUtilTaskTest
 
 ### Integration Tests Executed
 
