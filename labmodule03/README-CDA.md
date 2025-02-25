@@ -21,6 +21,7 @@ Steps:
 -- **ActuatorData:** This class handles actuator commands with support for both numeric (float) values and string-based state data. It includes methods to get and set the value, command, and state data, and features an update mechanism to refresh its data based on another instance.
 -- **SystemPerformanceData:** This class collects system performance metrics (CPU and memory utilization) with appropriate accessors that update the timestamp upon modification.
 I also ensured that the default constants from ConfigConst are properly used for initializing values, and that the variable names and types remain consistent for future integration with the GDA code base. Finally, the implementation has been structured so that all relevant unit tests pass, confirming the correct functionality.
+- PIOT-CDA-03-002: The BaseSensorSimTask module has been updated. In the constructor, key attributes such as dataSet, name, typeID, dataSetIndex, and the useRandomizer flag have been initialized. The getName and getTypeID methods were implemented to return the sensor’s name and type identifier, respectively. Additionally, the generateTelemetry method was developed to create a SensorData instance (either by generating a random value within specified bounds or by retrieving the next entry from a provided dataset) while the getTelemetryValue method returns the current sensor value. No tests have been executed for this module.
 
 ### Code Repository and Branch
 
