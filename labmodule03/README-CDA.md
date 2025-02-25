@@ -26,6 +26,9 @@ I also ensured that the default constants from ConfigConst are properly used for
 - PIOT-CDA-03-004: The **BaseActuatorSimTask** module has been updated. In the constructor, key attributes such as `name`, `typeID`, `simpleName`, `lastKnownCommand`, and `lastKnownValue` have been initialized. Additionally, the `_activateActuator` and `_deactivateActuator` methods have been implemented to simulate actuator activation and deactivation, logging relevant information. 
 The **updateActuator** method has also been developed to process incoming `ActuatorData` commands, execute the appropriate actuator action, and return a response. This method ensures that repeated commands are ignored unless a new value is provided and updates the last known command and value accordingly. The class is designed to be extended by specific actuator simulator tasks, which may override the activation and deactivation methods as needed. 
 No unit tests have been executed for this base class.
+- PIOT-CDA-03-005: The **HumidifierActuatorSimTask** and **HvacActuatorSimTask** modules have been edited, both derived from **BaseActuatorSimTask**. These modules serve as actuator simulators for a humidifier and an HVAC system, respectively, and have been implemented with minimal functionality. 
+In both cases, the constructor initializes the actuator’s **name**, **typeID**, and a **simpleName** for logging purposes, following the same structure as the base class. No modifications were made to the `_activateActuator()` or `_deactivateActuator()` methods, as the default behavior provided by **BaseActuatorSimTask** is sufficient.
+Unit tests for **HumidifierActuatorSimTaskTest** and **HvacActuatorSimTaskTest** have passed successfully. ON/OFF and the reported values are displayed properly. 
 
 ### Code Repository and Branch
 
@@ -42,7 +45,8 @@ since you need to ensure you haven't introduced regressions.
 - ActuatorDataTest
 - SensorDataTest
 - SystemPerformanceDataTest
-- 
+- HumidifierActuatorSimTaskTest
+- HvacActuatorSimTaskTest
 - 
 
 ### Integration Tests Executed
