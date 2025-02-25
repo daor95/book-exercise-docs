@@ -17,9 +17,9 @@ Steps:
 
 - PIOT-CDA-03-000: Git "labmodule03" branch created.
 - PIOT-CDA-03-001: Refined several Python modules that serve as data containers for an IoT system. A base class has been implemented, BaseIotData, which provides common properties like name, type ID, status code, and a timestamp, and then derived three specialized classes from it:
-- **SensorData:** This class manages sensor values (as floats), includes getter and setter methods for the value, and updates the timestamp whenever the value changes.
-- **ActuatorData:** This class handles actuator commands with support for both numeric (float) values and string-based state data. It includes methods to get and set the value, command, and state data, and features an update mechanism to refresh its data based on another instance.
-- **SystemPerformanceData:** This class collects system performance metrics (CPU and memory utilization) with appropriate accessors that update the timestamp upon modification.
+-- **SensorData:** This class manages sensor values (as floats), includes getter and setter methods for the value, and updates the timestamp whenever the value changes.
+-- **ActuatorData:** This class handles actuator commands with support for both numeric (float) values and string-based state data. It includes methods to get and set the value, command, and state data, and features an update mechanism to refresh its data based on another instance.
+-- **SystemPerformanceData:** This class collects system performance metrics (CPU and memory utilization) with appropriate accessors that update the timestamp upon modification.
 I also ensured that the default constants from ConfigConst are properly used for initializing values, and that the variable names and types remain consistent for future integration with the GDA code base. Finally, the implementation has been structured so that all relevant unit tests pass, confirming the correct functionality.
 
 ### Code Repository and Branch
