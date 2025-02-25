@@ -8,9 +8,11 @@ Be sure to implement all the PIOT-GDA-* issues.
 
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
-What does your implementation do? 
+**What does your implementation do?**  
+The implementation creates a self-monitoring gateway application (GDA) that not only runs its core functionalities but also continuously tracks system performance. It integrates modules to collect telemetry data, specifically CPU and memory utilization metrics, and logs these values periodically. In addition, it ensures that performance monitoring is managed in tandem with the application's lifecycle, with proper startup, periodic execution, and shutdown.
 
-How does your implementation work?
+**How does your implementation work?**  
+The GatewayDeviceApp class initializes the SystemPerformanceManager, which in turn instantiates two specialized tasks—SystemCpuUtilTask and SystemMemUtilTask—that extend a common BaseSystemUtilTask. These tasks use Java’s ManagementFactory API to retrieve CPU load and JVM memory usage. The SystemPerformanceManager employs a ScheduledExecutorService to periodically execute a runnable that calls the getTelemetryValue() methods of both tasks, logging the collected performance metrics. This scheduled monitoring is started when the application begins and is cleanly stopped during shutdown. All changes are integrated using standard Git merge procedures.
 
 Steps:
 
