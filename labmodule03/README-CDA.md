@@ -22,6 +22,7 @@ Steps:
 -- **SystemPerformanceData:** This class collects system performance metrics (CPU and memory utilization) with appropriate accessors that update the timestamp upon modification.
 I also ensured that the default constants from ConfigConst are properly used for initializing values, and that the variable names and types remain consistent for future integration with the GDA code base. Finally, the implementation has been structured so that all relevant unit tests pass, confirming the correct functionality.
 - PIOT-CDA-03-002: The BaseSensorSimTask module has been updated. In the constructor, key attributes such as dataSet, name, typeID, dataSetIndex, and the useRandomizer flag have been initialized. The getName and getTypeID methods were implemented to return the sensor’s name and type identifier, respectively. Additionally, the generateTelemetry method was developed to create a SensorData instance (either by generating a random value within specified bounds or by retrieving the next entry from a provided dataset) while the getTelemetryValue method returns the current sensor value. No tests have been executed for this module.
+- PIOT-CDA-03-003: The sensor simulator task modules (HumiditySensorSimTAsk, PressureSensorSimTAsk y TemperatureSensorSimTAsk) have been created, each derived from **BaseSensorSimTask**. These modules implement specific sensor simulations with minimal functionality. The necessary class shells were provided in the **python-components** repository. Each sensor simulator inherits the foundational methods from **BaseSensorSimTask**, ensuring consistency in telemetry generation. This implementation allows for easy extension and customization of sensor behavior within the IoT system. Unit tests have been tested and passed.
 
 ### Code Repository and Branch
 
@@ -48,8 +49,8 @@ some exceptions (such as your cloud connectivity tests). In such cases, they'll 
 your code to ensure it's correct. As for the tests you execute, you only need to list each
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
-- 
-- 
-- 
+- HumiditySensorSimTaskTest
+- PressureSensorSimTaskTest
+- TemperatureSensorSimTaskTest
 
 EOF.
