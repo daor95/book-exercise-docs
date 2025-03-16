@@ -37,6 +37,7 @@ Additionally, the `setDataMessageListener()` method allows external components t
 All unit tests passed except for `DataUtilTest.py` (as expected). Integration test **ActuatorAdapterManagerTest** completed successfully.
 -PIOT-CDA-03-008: The **DeviceDataManager** module has been implemented to act as the core orchestrator for data handling within the CDA. This module is responsible for managing system performance tracking, sensor data acquisition, and actuator control. It integrates key managers such as `SystemPerformanceManager`, `SensorAdapterManager`, and `ActuatorAdapterManager` which instances have been created. Additionally, it implements message-handling methods to process incoming sensor readings, actuator commands, and system performance reports: `startManager()` to start the managers, `stopManager()` to stop the managers, `handleActuatorCommandMessage`, `handleActuatorCommandResponse`, `handleIncomingMessage`, `handleSensorMessage` and `handleSystemPerformanceMessage` have been implemented (together with their helper methods), with logic for local sensor analysis and actuation triggers based on environmental thresholds.
 Integration test **DeviceDataManagerNoCommsTest** executed successfully.
+- PIOT-CDA-03-009: The **ConstrainedDeviceApp** has been updated to include an instance of `DeviceDataManager`. The `startApp()` and `stopApp()` methods were modified to invoke `startManager()` and `stopManager()`, respectively. All references to `SystemPerformanceManager` within `ConstrainedDeviceApp` have been removed. Finally, the **ConstrainedDeviceAppTest** integration test was successfully executed, validating the correct initialization and shutdown of the system.
 
 
 
@@ -76,5 +77,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - SensorAdapterManagerTest
 - ActuatorAdapterManagerTest
 - DeviceDataManagerNoCommsTest
+- ConstrainedDeviceAppTest
 
 EOF.
