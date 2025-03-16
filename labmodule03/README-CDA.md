@@ -72,9 +72,6 @@ some exceptions (such as your cloud connectivity tests). In such cases, they'll 
 your code to ensure it's correct. As for the tests you execute, you only need to list each
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
-- HumiditySensorSimTaskTest
-- PressureSensorSimTaskTest
-- TemperatureSensorSimTaskTest
 - SensorAdapterManagerTest
 - ActuatorAdapterManagerTest
 - DeviceDataManagerNoCommsTest
