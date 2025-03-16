@@ -10,7 +10,16 @@ NOTE: Include two full paragraphs describing your implementation approach by ans
 
 What does your implementation do? 
 
+My implementation provides a structured framework for managing IoT-related data, simulating sensors, controlling actuators, and coordinating system performance within a constrained device environment. At the core are specialized data classes (e.g., SensorData, ActuatorData, SystemPerformanceData) that encapsulate sensor readings, actuation commands, and performance metrics. Building on these data classes, I have created simulator tasks for sensors (humidity, pressure, temperature) and actuators (humidifier, HVAC), enabling the system to generate realistic telemetry data or respond to commands as if real-world hardware were present. Finally, manager classes (e.g., SensorAdapterManager, ActuatorAdapterManager, and DeviceDataManager) orchestrate data flow between these tasks, ensuring telemetry is collected at a defined interval, actuator commands are processed, and system performance updates are tracked. By integrating everything into the main ConstrainedDeviceApp, the implementation allows a smooth startup, operation, and shutdown sequence.
+
+
 How does your implementation work?
+
+First, there is a common parent class called `BaseIotData` that stores basic information for all IoT data, such as an ID, a type, a name, and a status. Other classes like `SensorData`, `ActuatorData`, and `SystemPerformanceData` build on this parent class by adding extra fields or methods. For example, `SensorData` tracks sensor values, while `ActuatorData` tracks the last command or state of an actuator.
+
+Next, there are “simulator” classes for sensors and actuators. A class called `BaseSensorSimTask` creates or updates sensor readings. Then, specialized sensor classes (for humidity, pressure, or temperature) inherit from it to produce realistic readings. On the actuator side, `BaseActuatorSimTask` simulates commands and activations. Classes like `HVAC` or `Humidifier` extend this to model specific devices.
+
+Managers tie these tasks together. The `SensorAdapterManager` schedules and collects readings from all sensors, while the `ActuatorAdapterManager` sends commands to the actuators. The `DeviceDataManager` oversees everything, including system performance checks. Lastly, `ConstrainedDeviceApp` starts the entire process, runs it, and then stops everything when finished. Once all tests pass, the code is merged into the main branch.
 
 
 Steps:
