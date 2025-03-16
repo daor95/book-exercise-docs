@@ -32,6 +32,11 @@ Unit tests for **HumidifierActuatorSimTaskTest** and **HvacActuatorSimTaskTest**
 - PIOT-CDA-03-006: The **SensorAdapterManager** module has been updated to manage sensor simulators. The class now includes a constructor that initializes key parameters using ConfigUtil, such as useEmulator, pollRate, and locationID. It also instantiates a scheduler from the apscheduler library to handle periodic telemetry updates. The `_initEnvironmentalSensorTasks()` method was implemented to configure sensor adapters for humidity, pressure, and temperature, ensuring they generate simulated data within defined thresholds.
 Additionally, the `setDataMessageListener()`, `startManager()`, and `stopManager()` methods were implemented to allow external components to interact with the sensor manager. The `handleTelemetry()` method was developed to generate sensor data, set location identifiers, log generated values, and pass data to the message listener.
 All unit tests passed except for `DataUtilTest.py` (as expected). Integration test **SensorAdapterManagerTest** completed successfully.
+- PIOT-CDA-03-007: The **ActuatorAdapterManager** module has been implemented to manage actuator simulators efficiently. The class now includes a constructor that initializes key parameters using ConfigUtil, such as useEmulator, deviceID, and locationID. It also sets up actuator instances for a humidifier and an HVAC system using `_initEnvironmentalActuationTasks()`.
+Additionally, the `setDataMessageListener()` method allows external components to register a listener for actuator messages. The `sendActuatorCommand()` method validates actuator commands before forwarding them to the appropriate actuator simulator. The implementation ensures that actuation commands are correctly processed and logged within the IoT system.
+All unit tests passed except for `DataUtilTest.py` (as expected). Integration test **ActuatorAdapterManagerTest** completed successfully.
+
+
 
 ### Code Repository and Branch
 
@@ -51,7 +56,10 @@ since you need to ensure you haven't introduced regressions.
 - HumidifierActuatorSimTaskTest
 - HvacActuatorSimTaskTest
 - BaseIotDataTest
-- 
+- HumiditySensorSimTaskTest
+- PressureSensorSimTaskTest
+- TemperatureSensorSimTaskTest
+
 
 ### Integration Tests Executed
 
@@ -64,5 +72,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - PressureSensorSimTaskTest
 - TemperatureSensorSimTaskTest
 - SensorAdapterManagerTest
+- ActuatorAdapterManagerTest
 
 EOF.
