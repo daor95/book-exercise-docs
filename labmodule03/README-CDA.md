@@ -35,6 +35,8 @@ All unit tests passed except for `DataUtilTest.py` (as expected). Integration te
 - PIOT-CDA-03-007: The **ActuatorAdapterManager** module has been implemented to manage actuator simulators efficiently. The class now includes a constructor that initializes key parameters using ConfigUtil, such as useEmulator, deviceID, and locationID. It also sets up actuator instances for a humidifier and an HVAC system using `_initEnvironmentalActuationTasks()`.
 Additionally, the `setDataMessageListener()` method allows external components to register a listener for actuator messages. The `sendActuatorCommand()` method validates actuator commands before forwarding them to the appropriate actuator simulator. The implementation ensures that actuation commands are correctly processed and logged within the IoT system.
 All unit tests passed except for `DataUtilTest.py` (as expected). Integration test **ActuatorAdapterManagerTest** completed successfully.
+-PIOT-CDA-03-008: The **DeviceDataManager** module has been implemented to act as the core orchestrator for data handling within the CDA. This module is responsible for managing system performance tracking, sensor data acquisition, and actuator control. It integrates key managers such as `SystemPerformanceManager`, `SensorAdapterManager`, and `ActuatorAdapterManager` which instances have been created. Additionally, it implements message-handling methods to process incoming sensor readings, actuator commands, and system performance reports: `startManager()` to start the managers, `stopManager()` to stop the managers, `handleActuatorCommandMessage`, `handleActuatorCommandResponse`, `handleIncomingMessage`, `handleSensorMessage` and `handleSystemPerformanceMessage` have been implemented (together with their helper methods), with logic for local sensor analysis and actuation triggers based on environmental thresholds.
+Integration test **DeviceDataManagerNoCommsTest** executed successfully.
 
 
 
@@ -73,5 +75,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - TemperatureSensorSimTaskTest
 - SensorAdapterManagerTest
 - ActuatorAdapterManagerTest
+- DeviceDataManagerNoCommsTest
 
 EOF.
