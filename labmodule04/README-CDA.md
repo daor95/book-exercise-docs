@@ -8,11 +8,17 @@ Be sure to implement all the PIOT-CDA-* issues (requirements).
 
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
-What does your implementation do? 
+What does your implementation do?
+
+My implementation provides an emulation environment for both sensors and actuators, enabling testing and validation without the need for physical hardware. Specifically, it leverages the Sense-Emu emulator and the Pisense library to simulate sensor and actuator behaviors, allowing software to retrieve and respond to sensor data for humidity, pressure, and temperature, and to simulate actuator responses such as HVAC operations, humidifier actions, and LED display messaging. By configuring a flag (enableEmulator) within the application’s property file (PiotConfig.props), the system dynamically loads and instantiates emulator-specific sensor and actuator classes at runtime, ensuring the flexibility to easily switch between software-based simulation implementations and emulator-based actuators interactions.
+
 
 How does your implementation work?
 
+The implementation works by dynamically importing emulator classes using Python's import_module() method, which occurs only when emulation mode is activated. Upon starting the application, the SensorAdapterManager and ActuatorAdapterManager check the emulator configuration flag from the configuration file. If emulator mode is enabled, they instantiate the appropriate sensor or actuator emulator classes (e.g., HumidityEmulatorTask, PressureEmulatorTask, TemperatureEmulatorTask, HumidifierEmulatorTask, HvacEmulatorTask, and LedDisplayEmulatorTask). These emulators interact directly with the Sense-Emu API via the Pisense library, retrieving sensor values or displaying actuator states on the emulator’s GUI. Tests were executed to ensure correct integration and operation: sensor values were retrieved and displayed, actuator commands were visualized, and command-line logging verified successful function calls.
 
+
+Steps:
 
 - PIOT-CFG-04-001: The Sense-Emu Sense HAT emulator and its supporting libraries were successfully installed and configured on Linux. The installation process began by installing the necessary `GTK` and `PyGObject` dependencies. Followed by setting up the `Sense-Emu emulator`. After completing the installation, the emulator’s graphical interface was tested using `sense_emu_gui`, confirming that it launched correctly.
 Next, the `pisense` library was installed, but an issue arose due to compatibility problems with Python 3.12 and the Pillow library. Specifically, a deprecated function in `pisense/anim.py` caused an error when running the emulator tests. To resolve this, the faulty line in `anim.py` was modified, replacing the deprecated `textlength()` function with `textbbox()`, ensuring compatibility with the updated Python and Pillow versions.
@@ -56,8 +62,6 @@ The test passed successfully, verifying that the **ActuatorAdapterManager** corr
 
 
 
-
-
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
@@ -72,7 +76,7 @@ NOTE: The instructor will execute your unit tests. You only need to list each te
 since you need to ensure you haven't introduced regressions.
 
 - All part01 unit tests
-- 
+- All part02 unit tests
 - 
 
 ### Integration Tests Executed
