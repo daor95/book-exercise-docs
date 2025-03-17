@@ -21,10 +21,12 @@ Integration test **SystemPerformanceManagerTest** was executed successfully.
 - PIOT-CDA-05-002: The **DataUtil** class in Python has been implemented to handle JSON serialization and deserialization for `ActuatorData`, `SensorData`, and `SystemPerformanceData`. This allows data conversion between object representations and JSON strings, enabling easy data exchange within the system.  
 A `JsonDataEncoder` class has been created with a `default` method to convert objects into dictionaries for serialization. The `DataUtil` class includes methods to convert objects to JSON (`actuatorDataToJson`, `sensorDataToJson`, and `systemPerformanceDataToJson`) and back from JSON to objects (`jsonToActuatorData`, `jsonToSensorData`, and `jsonToSystemPerformanceData`). These methods rely on a private helper function to format the JSON data, load it into a dictionary, and update the respective IoT data object.  
 Unit test **DataUtilTest** for `DataUtil` has been successfully executed, confirming that JSON conversion works correctly for all supported data types.
-# TODO Deferred: The integration test **DataIntegrationTest** has also been run to validate the interoperability between the **CDA and GDA**
+**TODO Deferred**: The integration test **DataIntegrationTest** has also been run to validate the interoperability between the **CDA and GDA**
 
 - PIOT-CDA-05-003: Skipped optional requirement.
 - PIOT-CDA-05-004: Skipped optional requirement.
+
+
 
 ### Code Repository and Branch
 
