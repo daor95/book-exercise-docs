@@ -44,6 +44,12 @@ The `_initEnvironmentalSensorTasks()` method was updated to instantiate the **Hu
 After implementing these updates, the integration test **SensorEmulatorManagerTest** was executed to verify the correct operation of the sensor adapter manager. The test successfully generated and logged sensor data from the humidity, pressure, and temperature emulators, displaying the expected values. 
 The test was successful.
 
+- PIOT-CDA-04-004: The **ActuatorAdapterManager** module was updated to integrate **Sense-Emu** actuator emulation functionality. The primary goal was to enable dynamic loading of actuator emulator tasks.
+The constructor of ActuatorAdapterManager was modified to handle the `self.useEmulator` flag by retrieving its value from the configuration file using `ConfigUtil`. If emulation mode was enabled, the appropriate actuator emulator tasks were dynamically loaded using Python’s `import_module()` function. 
+The `_initEnvironmentalActuationTasks()` method was updated to instantiate the **HumidifierEmulatorTask, HvacEmulatorTask, and LedDisplayEmulatorTask** dynamically when `self.useEmulator` was `True`. Otherwise, the standard simulated actuator tasks were instantiated. This implementation allows switching between software-based simulation and emulator-based actuators.
+Once the modifications were made, the integration test **ActuatorEmulatorManagerTest** was executed to verify the correct functionality of the ActuatorAdapterManager. The Sense-Emu GUI (`sense_emu_gui`) was launched to confirm that the emulator was running. The test successfully processed actuator commands, triggering corresponding changes in the Sense-Emu display and logging expected outputs.
+The test passed successfully, verifying that the **ActuatorAdapterManager** correctly integrates the **Sense-Emu** environment, dynamically loads actuator emulator tasks, and processes actuation commands efficiently.
+
 
 
 
@@ -79,5 +85,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - HvacEmulatorTaskTest
 - LedDisplayEmulatorTaskTest
 - SensorEmulatorManagerTest
+- ActuatorEmulatorManagerTest
 
 EOF.
