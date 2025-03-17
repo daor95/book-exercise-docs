@@ -50,7 +50,10 @@ The `_initEnvironmentalActuationTasks()` method was updated to instantiate the *
 Once the modifications were made, the integration test **ActuatorEmulatorManagerTest** was executed to verify the correct functionality of the ActuatorAdapterManager. The Sense-Emu GUI (`sense_emu_gui`) was launched to confirm that the emulator was running. The test successfully processed actuator commands, triggering corresponding changes in the Sense-Emu display and logging expected outputs.
 The test passed successfully, verifying that the **ActuatorAdapterManager** correctly integrates the **Sense-Emu** environment, dynamically loads actuator emulator tasks, and processes actuation commands efficiently (led display on the emulator...).
 
--PIOT-CDA-04-005: The implementation was omitted as it requires access to a physical device with I2C support, which is not available. The necessary sensor adapter tasks for humidity, pressure, and temperature were not implemented since they rely on direct hardware interaction. Instead, the existing Sense-Emu emulation setup remains in use for sensor readings.
+- PIOT-CDA-04-005: The implementation was omitted as it requires access to a physical device with I2C support, which is not available. The necessary sensor adapter tasks for humidity, pressure, and temperature were not implemented since they rely on direct hardware interaction. Instead, the existing Sense-Emu emulation setup remains in use for sensor readings.
+
+- PIOT-CDA-04-100: The code updates within the labmodule04 branch were reviewed and verified. All part01 and part02 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule04 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
+
 
 
 
