@@ -23,6 +23,8 @@ A `JsonDataEncoder` class has been created with a `default` method to convert ob
 Unit test **DataUtilTest** for `DataUtil` has been successfully executed, confirming that JSON conversion works correctly for all supported data types.
 # TODO Deferred: The integration test **DataIntegrationTest** has also been run to validate the interoperability between the **CDA and GDA**
 
+- PIOT-CDA-05-003: Skipped optional requirement.
+- PIOT-CDA-05-004: Skipped optional requirement.
 
 ### Code Repository and Branch
 
