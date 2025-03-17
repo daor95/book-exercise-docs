@@ -33,10 +33,16 @@ The **HumidifierEmulatorTask** was implemented to simulate a humidifier. When ac
 Similarly, the **HvacEmulatorTask** was developed to represent an HVAC system, functioning in the same manner as the humidifier, displaying activation and deactivation messages on the Sense-Emu LED screen.
 The **LedDisplayEmulatorTask** was slightly different, as it was designed to display arbitrary messages. When activated, it scrolls the given `stateData` across the LED display, and when deactivated, it clears the screen.
 Once the implementation was completed, integration tests were executed to verify that each actuator responded correctly. The **Sense-Emu GUI** was launched to ensure the emulator was running. The following tests were executed using `unittest`:
--- **HumidifierEmulatorTaskTest.py** confirmed that the humidifier actuator correctly displayed "ON" and "OFF" messages with the expected values.
--- **HvacEmulatorTaskTest.py** successfully validated the HVAC emulator's activation and deactivation.
--- **LedDisplayEmulatorTaskTest.py** ensured that custom text could be displayed on the LED screen and cleared correctly.
+-- **HumidifierEmulatorTaskTest** confirmed that the humidifier actuator correctly displayed "ON" and "OFF" messages with the expected values.
+-- **HvacEmulatorTaskTest** successfully validated the HVAC emulator's activation and deactivation.
+-- **LedDisplayEmulatorTaskTest** ensured that custom text could be displayed on the LED screen and cleared correctly.
 All tests passed successfully.
+
+- PIOT-CDA-04-003: The **SensorAdapterManager** module was updated to integrate the **Sense-Emu** sensor emulation functionality.
+The constructor of SensorAdapterManager was modified to process the `self.useEmulator` flag by retrieving its value from the configuration file using `ConfigUtil`. If emulation mode was enabled, the sensor emulator tasks were dynamically loaded using Python’s `import_module()` function.
+The `_initEnvironmentalSensorTasks()` method was updated to instantiate the **HumiditySensorEmulatorTask, PressureSensorEmulatorTask, and TemperatureSensorEmulatorTask** dynamically when `self.useEmulator` is set to `True`. Otherwise, the standard simulated sensor tasks were instantiated. This implementation allows switching between software-based simulation, and emulator-based sensor tasks.
+After implementing these updates, the integration test **SensorEmulatorManagerTest** was executed to verify the correct operation of the sensor adapter manager. The test successfully generated and logged sensor data from the humidity, pressure, and temperature emulators, displaying the expected values. 
+The test was successful.
 
 
 
@@ -72,5 +78,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - HumidifierEmulatorTaskTest
 - HvacEmulatorTaskTest
 - LedDisplayEmulatorTaskTest
+- SensorEmulatorManagerTest
 
 EOF.
