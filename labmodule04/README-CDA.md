@@ -48,7 +48,9 @@ The test was successful.
 The constructor of ActuatorAdapterManager was modified to handle the `self.useEmulator` flag by retrieving its value from the configuration file using `ConfigUtil`. If emulation mode was enabled, the appropriate actuator emulator tasks were dynamically loaded using Python’s `import_module()` function. 
 The `_initEnvironmentalActuationTasks()` method was updated to instantiate the **HumidifierEmulatorTask, HvacEmulatorTask, and LedDisplayEmulatorTask** dynamically when `self.useEmulator` was `True`. Otherwise, the standard simulated actuator tasks were instantiated. This implementation allows switching between software-based simulation and emulator-based actuators.
 Once the modifications were made, the integration test **ActuatorEmulatorManagerTest** was executed to verify the correct functionality of the ActuatorAdapterManager. The Sense-Emu GUI (`sense_emu_gui`) was launched to confirm that the emulator was running. The test successfully processed actuator commands, triggering corresponding changes in the Sense-Emu display and logging expected outputs.
-The test passed successfully, verifying that the **ActuatorAdapterManager** correctly integrates the **Sense-Emu** environment, dynamically loads actuator emulator tasks, and processes actuation commands efficiently.
+The test passed successfully, verifying that the **ActuatorAdapterManager** correctly integrates the **Sense-Emu** environment, dynamically loads actuator emulator tasks, and processes actuation commands efficiently (led display on the emulator...).
+
+-PIOT-CDA-04-005: The implementation was omitted as it requires access to a physical device with I2C support, which is not available. The necessary sensor adapter tasks for humidity, pressure, and temperature were not implemented since they rely on direct hardware interaction. Instead, the existing Sense-Emu emulation setup remains in use for sensor readings.
 
 
 
@@ -78,6 +80,7 @@ your code to ensure it's correct. As for the tests you execute, you only need to
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 integration tests
+- SenseHatEmulatorQuickTest
 - HumidityEmulatorTaskTest
 - PressureEmulatorTaskTest
 - TemperatureEmulatorTaskTest
