@@ -10,7 +10,12 @@ NOTE: Include two full paragraphs describing your implementation approach by ans
 
 What does your implementation do? 
 
+My implementation provides a structured and extensible framework within the GDA to efficiently manage IoT device data, particularly sensor readings, actuator commands, and system performance metrics. By creating specialized data container classes (ActuatorData, SensorData, SystemPerformanceData, and SystemStateData) that inherit from the common parent class BaseIotData, my approach allows for uniform data handling and serialization. The DataUtil class leverages the Gson library to serialize these data objects into JSON, facilitating consistent communication between the Java-based GDA and the Python-based CDA. Additionally, the integration of DeviceDataManager into GatewayDeviceApp centralizes the data handling logic, allowing modular management of system performance metrics through the SystemPerformanceManager.
+
+
 How does your implementation work?
+
+At runtime, the GatewayDeviceApp initializes and starts the DeviceDataManager, which subsequently initiates the SystemPerformanceManager to periodically collect CPU, memory, and disk utilization data. This collected telemetry is stored within instances of SystemPerformanceData and dispatched using a callback mechanism provided by the IDataMessageListener interface. By adopting a modular design and utilizing centralized configuration (ConfigUtil), this implementation maintains clear separation of responsibilities and enables easy expansion of communication protocols such as MQTT, CoAP, and cloud integration in the future.
 
 
 Steps:
