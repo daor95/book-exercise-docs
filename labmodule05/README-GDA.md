@@ -26,6 +26,10 @@ Finally, unit tests **(ActuatorDataTest, SensorDataTest, SystemPerformanceDataTe
 To achieve this, two new class-scoped variables have been introduced within **SystemPerformanceManager**: `locationID` to store the device’s location, retrieved from the configuration file, and `dataMsgListener` to manage callbacks. The `handleTelemetry()` method was modified to capture **CPU and memory utilization** values and store them within a new `SystemPerformanceData` instance, which is then passed to the `handleSystemPerformanceMessage()` method if a listener is registered. `setDataMessageListener()` method was also implemented to enable future callback support.
 Integration test **SystemPerformanceManagerTest** was successful executed.
 
+- PIOT-GDA-05-003:  In this module, the **DataUtil** class was implemented and refined to handle JSON serialization and deserialization for key data objects in the GDA. Using the **Gson** library, we developed conversion methods to transform `ActuatorData`, `SensorData`, `SystemPerformanceData` and `SystemStateData` instances into JSON format and vice versa.  
+The **DataUtil** class was structured with eight core methods: four for converting objects to JSON strings and four for reconstructing objects from JSON. These methods ensure that system data can be efficiently stored, transmitted, and reloaded while maintaining consistency across the GDA and the CDA.  
+Unit test **DataUtilTest** and Integration test **DataIntegrationTest** were executed successfully, being the integration test dependant of the execution of equivalent test in the CDA.
+
 
 ### Code Repository and Branch
 
@@ -45,7 +49,7 @@ since you need to ensure you haven't introduced regressions.
 - SensorDataTest
 - SystemPerformanceDataTest
 - SystemStateDataTest
-- 
+- DataUtilTest
 
 ### Integration Tests Executed
 
@@ -56,6 +60,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 integration tests
 - SystemPerformanceManagerTest
-- 
+- DataIntegrationTest
 
 EOF.
