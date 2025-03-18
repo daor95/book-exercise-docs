@@ -22,6 +22,10 @@ The **`ActuatorData` class** was implemented with attributes for command executi
 To maintain uniformity, all variable names and constants were aligned with predefined labels in the `ConfigConst` class, ensuring consistency between the Java and Python implementations.  
 Finally, unit tests **(ActuatorDataTest, SensorDataTest, SystemPerformanceDataTest, SystemStateDataTest)** were executed to validate the correctness of each data container.
 
+- PIOT-GDA-05-002: The **SystemPerformanceManager** class has been updated to store system performance data collected by the `handleTelemetry()` method within instances of **SystemPerformanceData**. Additionally, callback functionality has been integrated using the `IDataMessageListener` interface to allow real-time handling of performance data.  
+To achieve this, two new class-scoped variables have been introduced within **SystemPerformanceManager**: `locationID` to store the device’s location, retrieved from the configuration file, and `dataMsgListener` to manage callbacks. The `handleTelemetry()` method was modified to capture **CPU and memory utilization** values and store them within a new `SystemPerformanceData` instance, which is then passed to the `handleSystemPerformanceMessage()` method if a listener is registered. `setDataMessageListener()` method was also implemented to enable future callback support.
+Integration test **SystemPerformanceManagerTest** was successful executed.
+
 
 ### Code Repository and Branch
 
@@ -51,7 +55,7 @@ your code to ensure it's correct. As for the tests you execute, you only need to
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 integration tests
-- 
+- SystemPerformanceManagerTest
 - 
 
 EOF.
