@@ -30,6 +30,12 @@ Integration test **SystemPerformanceManagerTest** was successful executed.
 The **DataUtil** class was structured with eight core methods: four for converting objects to JSON strings and four for reconstructing objects from JSON. These methods ensure that system data can be efficiently stored, transmitted, and reloaded while maintaining consistency across the GDA and the CDA.  
 Unit test **DataUtilTest** and Integration test **DataIntegrationTest** were executed successfully, being the integration test dependant of the execution of equivalent test in the CDA.
 
+- PIOT-GDA-05-004: The **DeviceDataManager** class, the core processing unit of the GDA, was edited. This class is responsible for handling incoming data, processing system performance metrics, and managing communication between different system components.  
+To set up the **DeviceDataManager**, I first created class-scoped variables to manage MQTT, CoAP, cloud, and persistence clients, along with a `SystemPerformanceManager` instance. The constructor was updated to retrieve configuration values from `PiotConfig.props` using `ConfigUtil`, determining which communication modules should be enabled. A private method, `initManager()`, was implemented to instantiate and configure these components.  
+The `startManager()` and `stopManager()` methods were introduced to manage lifecycle operations, ensuring proper initialization and cleanup of system components (not yet implemented at this Lab Exercise). Additionally, the `IDataMessageListener` interface was implemented, this will provide callback methods for handling actuator commands, sensor messages, and system performance data when fully implemented.
+Finally, placeholder methods such as `handleUpstreamTransmission()` and `handleIncomingDataAnalysis()` were added to support future enhancements.
+Integration test **DeviceDataManagerNoCommsTest** was successfully conducted.
+
 
 ### Code Repository and Branch
 
@@ -61,5 +67,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - All part01 integration tests
 - SystemPerformanceManagerTest
 - DataIntegrationTest
+- DeviceDataManagerNoCommsTest
 
 EOF.
