@@ -47,6 +47,8 @@ Additionally, I ensured that **SystemPerformanceManager** was properly instantia
 
 - PIOT-GDA-05-008: Skipped optional requirement.
 
+- PIOT-GDA-05-100: The code updates within the labmodule05 branch were reviewed and verified. All part01 and part02 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule05 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
+
 
 ### Code Repository and Branch
 
@@ -67,6 +69,7 @@ since you need to ensure you haven't introduced regressions.
 - SystemPerformanceDataTest
 - SystemStateDataTest
 - DataUtilTest
+- All part02 unit tests
 
 ### Integration Tests Executed
 
@@ -80,5 +83,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - DataIntegrationTest
 - DeviceDataManagerNoCommsTest
 - GatewayDeviceAppTest
+- All part02 integration tests
 
 EOF.
