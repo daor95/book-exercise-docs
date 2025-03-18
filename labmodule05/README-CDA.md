@@ -10,7 +10,12 @@ NOTE: Include two full paragraphs describing your implementation approach by ans
 
 What does your implementation do? 
 
+My implementation enhances the CDA system by introducing JSON serialization and deserialization capabilities within the Python-based DataUtil class. Specifically, it supports converting ActuatorData, SensorData, and SystemPerformanceData objects into JSON-formatted strings and vice versa. Additionally, I updated the SystemPerformanceManager to systematically collect and encapsulate CPU and memory utilization statistics within the SystemPerformanceData object. It will also trigger notifications via a callback mechanism (IDataMessageListener) whenever new system performance data becomes available.
+
+
 How does your implementation work?
+
+The approach works by defining a utility class named DataUtil that leverages Python's built-in json module for serialization. A custom encoder class, JsonDataEncoder, transforms IoT data objects into dictionaries for easy JSON formatting. Within DataUtil, dedicated methods handle both serialization (object to JSON) and deserialization (JSON to object). The serialization methods use the json.dumps() function along with JsonDataEncoder to produce JSON strings, while deserialization methods first sanitize the JSON string, load it into a dictionary using json.loads(), and then populate IoT data objects by mapping keys to object attributes dynamically. Meanwhile, the SystemPerformanceManager implementation periodically retrieves telemetry metrics through task objects, encapsulates them within a newly created SystemPerformanceData instance, and will notify registered listeners via the callback interface (data exchange between system components).
 
 
 Steps: 
