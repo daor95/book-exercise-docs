@@ -41,6 +41,12 @@ Integration test **DeviceDataManagerNoCommsTest** was successfully conducted.
 Additionally, I ensured that **SystemPerformanceManager** was properly instantiated within **DeviceDataManager** (according to PIOT-GDA-05-004), and its start/stop lifecycle methods were invoked accordingly. This guarantees that system performance data is continuously collected and processed.  
 **GatewayDeviceAppTest** integration test was executed, confirming that the **GDA** initializes and shuts down correctly, logging relevant system performance data.
 
+- PIOT-GDA-05-006: Skipped optional requirement.
+
+- PIOT-GDA-05-007: Skipped optional requirement.
+
+- PIOT-GDA-05-008: Skipped optional requirement.
+
 
 ### Code Repository and Branch
 
