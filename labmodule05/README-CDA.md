@@ -29,6 +29,10 @@ Unit test **DataUtilTest** for `DataUtil` has been successfully executed, confir
 
 - PIOT-CDA-05-002 DEFERRED: The integration test **DataIntegrationTest** has also been run successfully to validate the interoperability between the **CDA and GDA**.
 
+- PIOT-CDA-05-100: The code updates within the labmodule05 branch were reviewed and verified. All part01 and part02 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule05 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
+
+  
+
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
@@ -44,7 +48,7 @@ since you need to ensure you haven't introduced regressions.
 
 - All part01 unit tests
 - DataUtilTest
-- 
+- All part02 unit tests
 
 ### Integration Tests Executed
 
@@ -56,6 +60,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - All part01 integration tests
 - SystemPerformanceManagerTest
 - DataIntegrationTest
-- 
+- All part02 integration tests
 
 EOF.
