@@ -36,6 +36,11 @@ The `startManager()` and `stopManager()` methods were introduced to manage lifec
 Finally, placeholder methods such as `handleUpstreamTransmission()` and `handleIncomingDataAnalysis()` were added to support future enhancements.
 Integration test **DeviceDataManagerNoCommsTest** was successfully conducted.
 
+- PIOT-GDA-05-005: The **DeviceDataManager** has been integrated into the **GatewayDeviceApp**, ensuring it serves as the central processing unit of the GDA. This allows for initialization, management, and termination of system components.  
+**DeviceDataManager** has been instantiated as a class-scoped variable within **GatewayDeviceApp** and updated the `startApp()` and `stopApp()` methods to invoke the respective `startManager()` and `stopManager()` methods of **DeviceDataManager**. As part of this integration, all references to **SystemPerformanceManager** within **GatewayDeviceApp** were removed, consolidating its management within **DeviceDataManager**.  
+Additionally, I ensured that **SystemPerformanceManager** was properly instantiated within **DeviceDataManager** (according to PIOT-GDA-05-004), and its start/stop lifecycle methods were invoked accordingly. This guarantees that system performance data is continuously collected and processed.  
+**GatewayDeviceAppTest** integration test was executed, confirming that the **GDA** initializes and shuts down correctly, logging relevant system performance data.
+
 
 ### Code Repository and Branch
 
@@ -68,5 +73,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - SystemPerformanceManagerTest
 - DataIntegrationTest
 - DeviceDataManagerNoCommsTest
+- GatewayDeviceAppTest
 
 EOF.
