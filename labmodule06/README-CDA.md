@@ -23,6 +23,9 @@ Steps:
 
 - PIOT-CDA-06-003: Full publish and subscribe capabilities were implemented in the **MqttClientConnector** class. The `publishMessage()` method was added to validate the topic and message content before publishing to the MQTT broker, ensuring the QoS level is within valid bounds or defaulting to a configured value if necessary. Similarly, the `subscribeToTopic()` method was implemented to allow topic subscriptions with appropriate validation and logging, while the `unsubscribeFromTopic()` method enables clean unsubscription from a topic. These methods ensure communication handling and integration with the MQTT broker. With these additions, the `testConnectAndCDAManagementStatusPubSub()` integration test was enabled and successfully executed, confirming that the publish, subscribe, and callback mechanisms—such as `onConnect()`, `onSubscribe()`, `onPublish()`, `onMessage()`, and `onDisconnect()`—are functioning as expected and producing the appropriate log output during test execution.
 
+- PIOT-CDA-06-004: The **MqttClientConnector** was successfully integrated into the **DeviceDataManager** class to manage MQTT connectivity as part of the device lifecycle. Conditional logic was added in the constructor of `DeviceDataManager` to check the `ENABLE_MQTT_CLIENT_KEY` flag from the configuration file. If enabled, an instance of `MqttClientConnector` is created and linked with a `DataMessageListener`. In the `startManager()` method, the MQTT client is connected to the broker and subscribed to the `CDA_ACTUATOR_CMD_RESOURCE` topic, while in `stopManager()`, the client unsubscribes from the same topic and disconnects from the broker to ensure clean shutdown. To validate these changes and test full MQTT protocol compliance, a comprehensive test was implemented in the **MqttClientControlPacketTest** class. Includes tests for generating all MQTT 3.1.1 control packets—such as CONNECT, PUBLISH (QoS 1 and 2), SUBSCRIBE, PINGREQ, and DISCONNECT...
+
+
 
 
 ### Code Repository and Branch
@@ -53,5 +56,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - All part02 integration tests
 - MqttClientConnectorTest (testConnectAndDisconnect())
 - MqttClientConnectorTest (testConnectAndCDAManagementStatusPubSub())
+- MqttClientControlPacketTest (custom test)
 
 EOF.
