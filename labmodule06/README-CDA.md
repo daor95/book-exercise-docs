@@ -147,6 +147,192 @@ With the following relationships of the 14 Control Packet Types (with a single e
 | PINGRESP            | Ping Response            | 302            |
 | DISCONNECT          | Disconnect Req           | 13             |
 
+**CONNECT**: 
+```text
+MQ Telemetry Transport Protocol, Connect Command
+    Header Flags: 0x10, Message Type: Connect Command
+        0001 .... = Message Type: Connect Command (1)
+        .... 0000 = Reserved: 0
+    Msg Len: 28
+    Protocol Name Length: 4
+    Protocol Name: MQTT
+    Version: MQTT v3.1.1 (4)
+    Connect Flags: 0x02, QoS Level: At most once delivery (Fire and Forget), Clean Session Flag
+        0... .... = User Name Flag: Not set
+        .0.. .... = Password Flag: Not set
+        ..0. .... = Will Retain: Not set
+        ...0 0... = QoS Level: At most once delivery (Fire and Forget) (0)
+        .... .0.. = Will Flag: Not set
+        .... ..1. = Clean Session Flag: Set
+        .... ...0 = (Reserved): Not set
+    Keep Alive: 60
+    Client ID Length: 16
+    Client ID: MyTestMqttClient
+```
+
+**CONNACK**:
+```text
+MQ Telemetry Transport Protocol, Connect Ack
+    Header Flags: 0x20, Message Type: Connect Ack
+        0010 .... = Message Type: Connect Ack (2)
+        .... 0000 = Reserved: 0
+    Msg Len: 2
+    Acknowledge Flags: 0x00
+        0000 000. = Reserved: Not set
+        .... ...0 = Session Present: Not set
+    Return Code: Connection Accepted (0)
+```
+**PUBLISH**: 
+```text
+MQ Telemetry Transport Protocol, Publish Message
+    Header Flags: 0x32, Message Type: Publish Message, QoS Level: At least once delivery (Acknowledged deliver)
+        0011 .... = Message Type: Publish Message (3)
+        .... 0... = DUP Flag: Not set
+        .... .01. = QoS Level: At least once delivery (Acknowledged deliver) (1)
+        .... ...0 = Retain: Not set
+    Msg Len: 366
+    Topic Length: 34
+    Topic: PIOT/ConstrainedDevice/ActuatorCmd
+    Message Identifier: 2
+    Message [truncated]: 7b0a202020202274696d655374616d70223a2022323032352d30342d31395431383a31313a33382e3139313334362b30303a3030222c0a20202020226861734572726f72223a2066616c73652c0a20202020226e616d65223a20224e6f7420536574222c0a2020202022747970
+```
+**PUBACK**:
+```text
+MQ Telemetry Transport Protocol, Publish Ack
+    Header Flags: 0x40, Message Type: Publish Ack
+        0100 .... = Message Type: Publish Ack (4)
+        .... 0000 = Reserved: 0
+    Msg Len: 2
+    Message Identifier: 2
+```
+**PUBREC**:
+```text
+MQ Telemetry Transport Protocol, Publish Received
+    Header Flags: 0x50, Message Type: Publish Received
+        0101 .... = Message Type: Publish Received (5)
+        .... 0000 = Reserved: 0
+    Msg Len: 2
+    Message Identifier: 11
+```
+**PUBREL**:
+```text
+MQ Telemetry Transport Protocol, Publish Release
+    Header Flags: 0x62, Message Type: Publish Release
+        0110 .... = Message Type: Publish Release (6)
+        .... 0010 = Reserved: 2
+    Msg Len: 2
+    Message Identifier: 11
+```
+**PUBCOMP**:
+```text
+MQ Telemetry Transport Protocol, Publish Complete
+    Header Flags: 0x70, Message Type: Publish Complete
+        0111 .... = Message Type: Publish Complete (7)
+        .... 0000 = Reserved: 0
+    Msg Len: 2
+    Message Identifier: 11
+```
+**SUBSCRIBE**:
+```text
+MQ Telemetry Transport Protocol, Subscribe Request
+    Header Flags: 0x82, Message Type: Subscribe Request
+        1000 .... = Message Type: Subscribe Request (8)
+        .... 0010 = Reserved: 2
+    Msg Len: 39
+    Message Identifier: 1
+    Topic Length: 34
+    Topic: PIOT/ConstrainedDevice/ActuatorCmd
+    Requested QoS: At least once delivery (Acknowledged deliver) (1)
+```
+**SUBACK**:
+```text
+MQ Telemetry Transport Protocol, Subscribe Ack
+    Header Flags: 0x90, Message Type: Subscribe Ack
+        1001 .... = Message Type: Subscribe Ack (9)
+        .... 0000 = Reserved: 0
+    Msg Len: 3
+    Message Identifier: 1
+    Granted QoS: At least once delivery (Acknowledged deliver) (1)
+```
+**UNSUBSCRIBE**:
+```text
+MQ Telemetry Transport Protocol, Unsubscribe Request
+    Header Flags: 0xa2, Message Type: Unsubscribe Request
+        1010 .... = Message Type: Unsubscribe Request (10)
+        .... 0010 = Reserved: 2
+    Msg Len: 38
+    Message Identifier: 3
+    Topic Length: 34
+    Topic: PIOT/ConstrainedDevice/ActuatorCmd
+```
+**UNSUBACK**:
+```text
+MQ Telemetry Transport Protocol, Unsubscribe Ack
+    Header Flags: 0xb0, Message Type: Unsubscribe Ack
+        1011 .... = Message Type: Unsubscribe Ack (11)
+        .... 0000 = Reserved: 0
+    Msg Len: 2
+    Message Identifier: 3
+```
+**PINGREQ**:
+```text
+MQ Telemetry Transport Protocol, Ping Request
+    Header Flags: 0xc0, Message Type: Ping Request
+        1100 .... = Message Type: Ping Request (12)
+        .... 0000 = Reserved: 0
+    Msg Len: 0
+```
+**PINGRESP**:
+```text
+MQ Telemetry Transport Protocol, Ping Response
+    Header Flags: 0xd0, Message Type: Ping Response
+        1101 .... = Message Type: Ping Response (13)
+        .... 0000 = Reserved: 0
+    Msg Len: 0
+```
+**DISCONNECT**:
+```text
+MQ Telemetry Transport Protocol, Disconnect Req
+    Header Flags: 0xe0, Message Type: Disconnect Req
+        1110 .... = Message Type: Disconnect Req (14)
+        .... 0000 = Reserved: 0
+    Msg Len: 0
+```
+
+| Type ID | Control Packet         | Description                                                                |
+|---------|------------------------|----------------------------------------------------------------------------|
+| 1       | CONNECT                | Client request to connect to the broker.                                   |
+| 2       | CONNACK                | Broker acknowledgment of the connection request.                           |
+| 3       | PUBLISH                | Publish a message to a topic.                                              |
+| 4       | PUBACK                 | Acknowledgment for PUBLISH (QoS 1).                                        |
+| 5       | PUBREC                 | Received confirmation for PUBLISH (QoS 2, step 1).                         |
+| 6       | PUBREL                 | Release message for PUBLISH (QoS 2, step 2).                               |
+| 7       | PUBCOMP                | Complete message for PUBLISH (QoS 2, step 3).                              |
+| 8       | SUBSCRIBE              | Client request to subscribe to topics.                                     |
+| 9       | SUBACK                 | Broker acknowledgment of subscription.                                     |
+| 10      | UNSUBSCRIBE            | Client request to unsubscribe from topics.                                 |
+| 11      | UNSUBACK               | Broker acknowledgment of unsubscription.                                   |
+| 12      | PINGREQ                | Ping request to check connection/liveness.                                 |
+| 13      | PINGRESP               | Ping response sent by the broker.                                          |
+| 14      | DISCONNECT             | Client notification of disconnecting from broker.                          |
+
+For QoS 0 (At most once, no ACK) only a PUBLISH packet is seen.
+
+For QoS 1 (At least once, requires PUBACK) a PUBLISH followed by PUBACK is seen.
+
+For QoS 2 (Exactly once, requires full handshake) PUBLISH → PUBREC → PUBREL → PUBCOMP is seen.
+
+
+We can see the see **PUBLISH → PUBREC → PUBREL → PUBCOMP** in Wireshark because **QoS 2 requires a four-step handshake** to ensure:
+1. Message is received exactly once.
+2. No duplicate messages are delivered.
+
+Also, in the **Keep-Alive Messages**:
+1. By default, the MQTT client sends a **PINGREQ** to the broker periodically.
+2. The broker responds with **PINGRESP**.
+
+
+
 
 
 
