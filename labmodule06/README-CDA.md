@@ -38,110 +38,117 @@ Steps:
 ![wireshark4](https://github.com/user-attachments/assets/585f9a36-9c7a-4247-9f11-cee503c57671)
 
 
-4	   0.000159401	127.0.0.1	127.0.0.1	MQTT	96	Connect Command
-7	   0.000261869	127.0.0.1	127.0.0.1	MQTT	70	Connect Ack
-13	 2.009060331	127.0.0.1	127.0.0.1	MQTT	68	Disconnect Req
-20	 4.010799182	127.0.0.1	127.0.0.1	MQTT	96	Connect Command
-25	 4.010979838	127.0.0.1	127.0.0.1	MQTT	70	Connect Ack
-29	 4.011731046	127.0.0.1	127.0.0.1	MQTT	107	Subscribe Request (id=1) [PIOT/ConstrainedDevice/ActuatorCmd]
-30	 4.011795301	127.0.0.1	127.0.0.1	MQTT	71	Subscribe Ack (id=1)
-34	 5.012399431	127.0.0.1	127.0.0.1	MQTT	435	Publish Message (id=2) [PIOT/ConstrainedDevice/ActuatorCmd]
-35	 5.012494526	127.0.0.1	127.0.0.1	MQTT	435	Publish Message (id=1) [PIOT/ConstrainedDevice/ActuatorCmd]
-37	 5.012533380	127.0.0.1	127.0.0.1	MQTT	70	Publish Ack (id=2)
-41	 5.013097953	127.0.0.1	127.0.0.1	MQTT	70	Publish Ack (id=1)
-45	 6.014408571	127.0.0.1	127.0.0.1	MQTT	106	Unsubscribe Request (id=3)
-47	 6.014502214	127.0.0.1	127.0.0.1	MQTT	70	Unsubscribe Ack (id=3)
-51	 7.015715638	127.0.0.1	127.0.0.1	MQTT	68	Disconnect Req
-61	 8.020058161	127.0.0.1	127.0.0.1	MQTT	96	Connect Command
-66	 8.020164395	127.0.0.1	127.0.0.1	MQTT	70	Connect Ack
-72	 8.023499472	127.0.0.1	127.0.0.1	MQTT	105	Subscribe Request (id=4) [PIOT/ConstrainedDevice/SensorMsg]
-73	 8.023561413	127.0.0.1	127.0.0.1	MQTT	71	Subscribe Ack (id=4)
-77	 9.024441054	127.0.0.1	127.0.0.1	MQTT	369	Publish Message (id=5) [PIOT/ConstrainedDevice/SensorMsg]
-78	 9.024529098	127.0.0.1	127.0.0.1	MQTT	369	Publish Message (id=1) [PIOT/ConstrainedDevice/SensorMsg]
-80	 9.024557184	127.0.0.1	127.0.0.1	MQTT	70	Publish Ack (id=5)
-84	 9.024794612	127.0.0.1	127.0.0.1	MQTT	70	Publish Ack (id=1)
-88	10.025487803	127.0.0.1	127.0.0.1	MQTT	104	Unsubscribe Request (id=6)
-90	10.025555894	127.0.0.1	127.0.0.1	MQTT	70	Unsubscribe Ack (id=6)
-94	11.027545809	127.0.0.1	127.0.0.1	MQTT	68	Disconnect Req
-103	12.029315850	127.0.0.1	127.0.0.1	MQTT	96	Connect Command
-108	12.029436387	127.0.0.1	127.0.0.1	MQTT	70	Connect Ack
-113	12.030061817	127.0.0.1	127.0.0.1	MQTT	109	Subscribe Request (id=7) [PIOT/ConstrainedDevice/SystemPerfMsg]
-114	12.030137040	127.0.0.1	127.0.0.1	MQTT	71	Subscribe Ack (id=7)
-118	13.030857184	127.0.0.1	127.0.0.1	MQTT	404	Publish Message (id=8) [PIOT/ConstrainedDevice/SystemPerfMsg]
-119	13.030999626	127.0.0.1	127.0.0.1	MQTT	404	Publish Message (id=1) [PIOT/ConstrainedDevice/SystemPerfMsg]
-121	13.031039742	127.0.0.1	127.0.0.1	MQTT	70	Publish Ack (id=8)
-125	13.031434335	127.0.0.1	127.0.0.1	MQTT	70	Publish Ack (id=1)
-129	14.033227083	127.0.0.1	127.0.0.1	MQTT	108	Unsubscribe Request (id=9)
-131	14.033348922	127.0.0.1	127.0.0.1	MQTT	70	Unsubscribe Ack (id=9)
-135	15.036104769	127.0.0.1	127.0.0.1	MQTT	68	Disconnect Req
-144	16.037092826	127.0.0.1	127.0.0.1	MQTT	96	Connect Command
-149	16.037444829	127.0.0.1	127.0.0.1	MQTT	70	Connect Ack
-154	16.038501431	127.0.0.1	127.0.0.1	MQTT	109	Subscribe Request (id=10) [PIOT/ConstrainedDevice/SystemPerfMsg]
-155	16.038570794	127.0.0.1	127.0.0.1	MQTT	71	Subscribe Ack (id=10)
-159	17.039217356	127.0.0.1	127.0.0.1	MQTT	437	Publish Message (id=11) [PIOT/ConstrainedDevice/SystemPerfMsg]
-160	17.039333425	127.0.0.1	127.0.0.1	MQTT	70	Publish Received (id=11)
-164	17.039516143	127.0.0.1	127.0.0.1	MQTT	70	Publish Release (id=11)
-165	17.039587880	127.0.0.1	127.0.0.1	MQTT	437	Publish Message (id=1) [PIOT/ConstrainedDevice/SystemPerfMsg]
-168	17.039762174	127.0.0.1	127.0.0.1	MQTT	70	Publish Received (id=1)
-169	17.039777108	127.0.0.1	127.0.0.1	MQTT	70	Publish Complete (id=11)
-171	17.079906304	127.0.0.1	127.0.0.1	MQTT	70	Publish Release (id=1)
-175	17.080299154	127.0.0.1	127.0.0.1	MQTT	70	Publish Complete (id=1)
-179	18.040417422	127.0.0.1	127.0.0.1	MQTT	108	Unsubscribe Request (id=12)
-181	18.040529955	127.0.0.1	127.0.0.1	MQTT	70	Unsubscribe Ack (id=12)
-185	19.041609613	127.0.0.1	127.0.0.1	MQTT	68	Disconnect Req
-194	20.042947373	127.0.0.1	127.0.0.1	MQTT	96	Connect Command
-199	20.043082824	127.0.0.1	127.0.0.1	MQTT	70	Connect Ack
-204	20.043928460	127.0.0.1	127.0.0.1	MQTT	105	Subscribe Request (id=13) [PIOT/ConstrainedDevice/SensorMsg]
-205	20.043992064	127.0.0.1	127.0.0.1	MQTT	71	Subscribe Ack (id=13)
-209	21.048764325	127.0.0.1	127.0.0.1	MQTT	369	Publish Message (id=14) [PIOT/ConstrainedDevice/SensorMsg]
-210	21.048966103	127.0.0.1	127.0.0.1	MQTT	70	Publish Received (id=14)
-214	21.049114474	127.0.0.1	127.0.0.1	MQTT	70	Publish Release (id=14)
-215	21.049187894	127.0.0.1	127.0.0.1	MQTT	369	Publish Message (id=1) [PIOT/ConstrainedDevice/SensorMsg]
-218	21.049332750	127.0.0.1	127.0.0.1	MQTT	70	Publish Received (id=1)
-219	21.049345370	127.0.0.1	127.0.0.1	MQTT	70	Publish Complete (id=14)
-221	21.089953772	127.0.0.1	127.0.0.1	MQTT	70	Publish Release (id=1)
-225	21.090291662	127.0.0.1	127.0.0.1	MQTT	70	Publish Complete (id=1)
-229	22.050360503	127.0.0.1	127.0.0.1	MQTT	104	Unsubscribe Request (id=15)
-231	22.050515886	127.0.0.1	127.0.0.1	MQTT	70	Unsubscribe Ack (id=15)
-235	23.052237729	127.0.0.1	127.0.0.1	MQTT	68	Disconnect Req
-244	24.054090306	127.0.0.1	127.0.0.1	MQTT	96	Connect Command
-248	24.054184819	127.0.0.1	127.0.0.1	MQTT	70	Connect Ack
-254	24.055017874	127.0.0.1	127.0.0.1	MQTT	109	Subscribe Request (id=16) [PIOT/ConstrainedDevice/SystemPerfMsg]
-255	24.055073174	127.0.0.1	127.0.0.1	MQTT	71	Subscribe Ack (id=16)
-259	25.055673568	127.0.0.1	127.0.0.1	MQTT	404	Publish Message (id=17) [PIOT/ConstrainedDevice/SystemPerfMsg]
-260	25.055805222	127.0.0.1	127.0.0.1	MQTT	70	Publish Received (id=17)
-264	25.056035867	127.0.0.1	127.0.0.1	MQTT	70	Publish Release (id=17)
-265	25.056113363	127.0.0.1	127.0.0.1	MQTT	404	Publish Message (id=1) [PIOT/ConstrainedDevice/SystemPerfMsg]
-268	25.056308611	127.0.0.1	127.0.0.1	MQTT	70	Publish Received (id=1)
-269	25.056381720	127.0.0.1	127.0.0.1	MQTT	70	Publish Complete (id=17)
-271	25.096938165	127.0.0.1	127.0.0.1	MQTT	70	Publish Release (id=1)
-275	25.097317292	127.0.0.1	127.0.0.1	MQTT	70	Publish Complete (id=1)
-279	26.057084451	127.0.0.1	127.0.0.1	MQTT	108	Unsubscribe Request (id=18)
-281	26.057177362	127.0.0.1	127.0.0.1	MQTT	70	Unsubscribe Ack (id=18)
-285	27.058630771	127.0.0.1	127.0.0.1	MQTT	68	Disconnect Req
-292	30.060821797	127.0.0.1	127.0.0.1	MQTT	96	Connect Command
-297	30.061039391	127.0.0.1	127.0.0.1	MQTT	70	Connect Ack
-301	90.177444530	127.0.0.1	127.0.0.1	MQTT	68	Ping Request
-302	90.177526893	127.0.0.1	127.0.0.1	MQTT	68	Ping Response
-306	95.184335663	127.0.0.1	127.0.0.1	MQTT	68	Disconnect Req
+| Nº  | Time (s)     | Source     | Destination  | Protocol | Length | Info                                                                 |
+|-----|--------------|------------|--------------|----------|--------|----------------------------------------------------------------------|
+| 4   | 0.000159401  | 127.0.0.1  | 127.0.0.1    | MQTT     | 96     | Connect Command                                                      |
+| 7   | 0.000261869  | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Connect Ack                                                          |
+| 13  | 2.009060331  | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Disconnect Req                                                       |
+| 20  | 4.010799182  | 127.0.0.1  | 127.0.0.1    | MQTT     | 96     | Connect Command                                                      |
+| 25  | 4.010979838  | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Connect Ack                                                          |
+| 29  | 4.011731046  | 127.0.0.1  | 127.0.0.1    | MQTT     | 107    | Subscribe Request (id=1) [PIOT/ConstrainedDevice/ActuatorCmd]        |
+| 30  | 4.011795301  | 127.0.0.1  | 127.0.0.1    | MQTT     | 71     | Subscribe Ack (id=1)                                                 |
+| 34  | 5.012399431  | 127.0.0.1  | 127.0.0.1    | MQTT     | 435    | Publish Message (id=2) [PIOT/ConstrainedDevice/ActuatorCmd]          |
+| 35  | 5.012494526  | 127.0.0.1  | 127.0.0.1    | MQTT     | 435    | Publish Message (id=1) [PIOT/ConstrainedDevice/ActuatorCmd]          |
+| 37  | 5.012533380  | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Ack (id=2)                                                   |
+| 41  | 5.013097953  | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Ack (id=1)                                                   |
+| 45  | 6.014408571  | 127.0.0.1  | 127.0.0.1    | MQTT     | 106    | Unsubscribe Request (id=3)                                           |
+| 47  | 6.014502214  | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Unsubscribe Ack (id=3)                                               |
+| 51  | 7.015715638  | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Disconnect Req                                                       |
+| 61  | 8.020058161  | 127.0.0.1  | 127.0.0.1    | MQTT     | 96     | Connect Command                                                      |
+| 66  | 8.020164395  | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Connect Ack                                                          |
+| 72  | 8.023499472  | 127.0.0.1  | 127.0.0.1    | MQTT     | 105    | Subscribe Request (id=4) [PIOT/ConstrainedDevice/SensorMsg]          |
+| 73  | 8.023561413  | 127.0.0.1  | 127.0.0.1    | MQTT     | 71     | Subscribe Ack (id=4)                                                 |
+| 77  | 9.024441054  | 127.0.0.1  | 127.0.0.1    | MQTT     | 369    | Publish Message (id=5) [PIOT/ConstrainedDevice/SensorMsg]            |
+| 78  | 9.024529098  | 127.0.0.1  | 127.0.0.1    | MQTT     | 369    | Publish Message (id=1) [PIOT/ConstrainedDevice/SensorMsg]            | 
+| 80  | 9.024557184  | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Ack (id=5)                                                   |
+| 84  | 9.024794612  | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Ack (id=1)                                                   |
+| 88  | 10.025487803 | 127.0.0.1  | 127.0.0.1    | MQTT     | 104    | Unsubscribe Request (id=6)                                           |
+| 90  | 10.025555894 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Unsubscribe Ack (id=6)                                               |
+| 94  | 11.027545809 | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Disconnect Req                                                       |
+| 103 | 12.029315850 | 127.0.0.1  | 127.0.0.1    | MQTT     | 96     | Connect Command                                                      |
+| 108 | 12.029436387 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Connect Ack                                                          |
+| 113 | 12.030061817 | 127.0.0.1  | 127.0.0.1    | MQTT     | 109    | Subscribe Request (id=7) [PIOT/ConstrainedDevice/SystemPerfMsg]      |
+| 114 | 12.030137040 | 127.0.0.1  | 127.0.0.1    | MQTT     | 71     | Subscribe Ack (id=7)                                                 |
+| 118 | 13.030857184 | 127.0.0.1  | 127.0.0.1    | MQTT     | 404    | Publish Message (id=8) [PIOT/ConstrainedDevice/SystemPerfMsg]        |
+| 119 | 13.030999626 | 127.0.0.1  | 127.0.0.1    | MQTT     | 404    | Publish Message (id=1) [PIOT/ConstrainedDevice/SystemPerfMsg]        |
+| 121 | 13.031039742 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Ack (id=8)                                                   |
+| 125 | 13.031434335 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Ack (id=1)                                                   |
+| 129 | 14.033227083 | 127.0.0.1  | 127.0.0.1    | MQTT     | 108    | Unsubscribe Request (id=9)                                           |
+| 131 | 14.033348922 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Unsubscribe Ack (id=9)                                               |
+| 135 | 15.036104769 | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Disconnect Req                                                       |
+| 144 | 16.037092826 | 127.0.0.1  | 127.0.0.1    | MQTT     | 96     | Connect Command                                                      |
+| 149 | 16.037444829 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Connect Ack                                                          |
+| 154 | 16.038501431 | 127.0.0.1  | 127.0.0.1    | MQTT     | 109    | Subscribe Request (id=10) [PIOT/ConstrainedDevice/SystemPerfMsg]     |
+| 155 | 16.038570794 | 127.0.0.1  | 127.0.0.1    | MQTT     | 71     | Subscribe Ack (id=10)                                                |
+| 159 | 17.039217356 | 127.0.0.1  | 127.0.0.1    | MQTT     | 437    | Publish Message (id=11) [PIOT/ConstrainedDevice/SystemPerfMsg]       |
+| 160 | 17.039333425 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Received (id=11)                                             |
+| 164 | 17.039516143 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Release (id=11)                                              |
+| 165 | 17.039587880 | 127.0.0.1  | 127.0.0.1    | MQTT     | 437    | Publish Message (id=1) [PIOT/ConstrainedDevice/SystemPerfMsg]        |
+| 168 | 17.039762174 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Received (id=1)                                              |
+| 169 | 17.039777108 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Complete (id=11)                                             |
+| 171 | 17.079906304 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Release (id=1)                                               |
+| 175 | 17.080299154 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Complete (id=1)                                              |
+| 179 | 18.040417422 | 127.0.0.1  | 127.0.0.1    | MQTT     | 108    | Unsubscribe Request (id=12)                                          |
+| 181 | 18.040529955 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Unsubscribe Ack (id=12)                                              |
+| 185 | 19.041609613 | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Disconnect Req                                                       |
+| 194 | 20.042947373 | 127.0.0.1  | 127.0.0.1    | MQTT     | 96     | Connect Command                                                      |
+| 199 | 20.043082824 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Connect Ack                                                          |
+| 204 | 20.043928460 | 127.0.0.1  | 127.0.0.1    | MQTT     | 105    | Subscribe Request (id=13) [PIOT/ConstrainedDevice/SensorMsg]         |
+| 205 | 20.043992064 | 127.0.0.1  | 127.0.0.1    | MQTT     | 71     | Subscribe Ack (id=13)                                                |
+| 209 | 21.048764325 | 127.0.0.1  | 127.0.0.1    | MQTT     | 369    | Publish Message (id=14) [PIOT/ConstrainedDevice/SensorMsg]           |
+| 210 | 21.048966103 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Received (id=14)                                             |
+| 214 | 21.049114474 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Release (id=14)                                              |
+| 215 | 21.049187894 | 127.0.0.1  | 127.0.0.1    | MQTT     | 369    | Publish Message (id=1) [PIOT/ConstrainedDevice/SensorMsg]            |
+| 218 | 21.049332750 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Received (id=1)                                              |
+| 219 | 21.049345370 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Complete (id=14)                                             |
+| 221 | 21.089953772 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Release (id=1)                                               |
+| 225 | 21.090291662 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Complete (id=1)                                              |
+| 229 | 22.050360503 | 127.0.0.1  | 127.0.0.1    | MQTT     | 104    | Unsubscribe Request (id=15)                                          |
+| 231 | 22.050515886 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Unsubscribe Ack (id=15)                                              |
+| 235 | 23.052237729 | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Disconnect Req                                                       |
+| 244 | 24.054090306 | 127.0.0.1  | 127.0.0.1    | MQTT     | 96     | Connect Command                                                      |
+| 248 | 24.054184819 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Connect Ack                                                          |
+| 254 | 24.055017874 | 127.0.0.1  | 127.0.0.1    | MQTT     | 109    | Subscribe Request (id=16) [PIOT/ConstrainedDevice/SystemPerfMsg]     |
+| 255 | 24.055073174 | 127.0.0.1  | 127.0.0.1    | MQTT     | 71     | Subscribe Ack (id=16)                                                |
+| 259 | 25.055673568 | 127.0.0.1  | 127.0.0.1    | MQTT     | 404    | Publish Message (id=17) [PIOT/ConstrainedDevice/SystemPerfMsg]       |
+| 260 | 25.055805222 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Received (id=17)                                             |
+| 264 | 25.056035867 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Release (id=17)                                              |
+| 265 | 25.056113363 | 127.0.0.1  | 127.0.0.1    | MQTT     | 404    | Publish Message (id=1) [PIOT/ConstrainedDevice/SystemPerfMsg]        |
+| 268 | 25.056308611 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Received (id=1)                                              |
+| 269 | 25.056381720 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Complete (id=17)                                             |
+| 271 | 25.096938165 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Release (id=1)                                               |
+| 275 | 25.097317292 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Publish Complete (id=1)                                              |
+| 279 | 26.057084451 | 127.0.0.1  | 127.0.0.1    | MQTT     | 108    | Unsubscribe Request (id=18)                                          |
+| 281 | 26.057177362 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Unsubscribe Ack (id=18)                                              |
+| 285 | 27.058630771 | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Disconnect Req                                                       |
+| 292 | 30.060821797 | 127.0.0.1  | 127.0.0.1    | MQTT     | 96     | Connect Command                                                      |
+| 297 | 30.061039391 | 127.0.0.1  | 127.0.0.1    | MQTT     | 70     | Connect Ack                                                          |
+| 301 | 90.177444530 | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Ping Request                                                         |
+| 302 | 90.177526893 | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Ping Response                                                        |
+| 306 | 95.184335663 | 127.0.0.1  | 127.0.0.1    | MQTT     | 68     | Disconnect Req                                                       |
 
-With the following relationship of the 14 Control Packets Types (with a single example of each one):
 
-Control Packet Type | Descripción Wireshark | Packet Number
-CONNECT             | Connect Command       | 4
-CONNACK             | Connect Ack           | 7
-PUBLISH             | Publish Message       | 34
-PUBACK              | Publish Ack           | 37
-PUBREC              | Publish Received      | 160
-PUBREL              | Publish Release       | 164
-PUBCOMP             | Publish Complete      | 169
-SUBSCRIBE           | Subscribe Request     | 29
-SUBACK              | Subscribe Ack         | 30
-UNSUBSCRIBE         | Unsubscribe Request   | 45
-UNSUBACK            | Unsubscribe Ack       | 47
-PINGREQ             | Ping Request          | 301
-PINGRESP            | Ping Response         | 302
-DISCONNECT          | Disconnect Req        | 13
+With the following relationships of the 14 Control Packet Types (with a single example of each one):
+
+| Control Packet Type | Wireshark Description    | Packet Number |
+|---------------------|--------------------------|----------------|
+| CONNECT             | Connect Command          | 4              |
+| CONNACK             | Connect Ack              | 7              |
+| PUBLISH             | Publish Message          | 34             |
+| PUBACK              | Publish Ack              | 37             |
+| PUBREC              | Publish Received         | 160            |
+| PUBREL              | Publish Release          | 164            |
+| PUBCOMP             | Publish Complete         | 169            |
+| SUBSCRIBE           | Subscribe Request        | 29             |
+| SUBACK              | Subscribe Ack            | 30             |
+| UNSUBSCRIBE         | Unsubscribe Request      | 45             |
+| UNSUBACK            | Unsubscribe Ack          | 47             |
+| PINGREQ             | Ping Request             | 301            |
+| PINGRESP            | Ping Response            | 302            |
+| DISCONNECT          | Disconnect Req           | 13             |
+
+
+
 
 ### Code Repository and Branch
 
