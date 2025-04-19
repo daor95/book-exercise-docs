@@ -22,6 +22,8 @@ Steps:
 
 - PIOT-GDA-07-003: The **MqttClientConnector** class has been enhanced to support MQTT publish and subscribe capabilities. The `publishMessage()` method was implemented to validate the topic and QoS level, convert the message to a byte payload, and publish it to the specified topic, with error handling and logging. Similarly, the `subscribeToTopic()` and `unsubscribeFromTopic()` methods were implemented to manage topic subscriptions and ensure valid parameters, while also logging the outcomes. A class-level `DEFAULT_QOS` constant was introduced to handle invalid QoS values. Additionally, the `isConnected()` method was completed to accurately reflect the client’s current connection status. These updates enable the class to participate fully in MQTT communication, including receiving and handling callbacks for successful delivery (`deliveryComplete`) and incoming messages (`messageArrived`). With these changes, the integration test `testPublishAndSubscribe()` now executes successfully, demonstrating that the class can reliably connect to a broker, manage topic subscriptions, publish messages, and receive them through proper callback handling.
 
+- PIOT-GDA-07-004: The **MqttClientConnector** has been integrated into the **DeviceDataManager** to enable end-to-end MQTT-based communication within the Gateway Device Application (GDA). A class-scoped boolean flag `enableMqttClient` now controls whether MQTT functionality should be used, allowing dynamic configuration through `ConfigUtil`. When enabled, the `MqttClientConnector` is instantiated and initialized during the `initManager()` method, with the `DeviceDataManager` also registered as the `IDataMessageListener`. The `startManager()` method connects to the MQTT broker and subscribes to essential topics using default QoS, while `stopManager()` ensures clean disconnection by unsubscribing from the topics and terminating the connection. To validate the implementation, a dedicated integration test class `MqttClientControlPacketTest` was created, successfully exercising all 14 MQTT 3.1.1 control packet types through a sequence of connection, publishing with QoS levels 0, 1, and 2, subscription management, and ping handling based on the configured keep-alive interval.
+
   
 
 ### Code Repository and Branch
@@ -52,5 +54,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - All part02 integration tests
 - MqttClientConnectorTest (testConnectAndDisconnect())
 - MqttClientConnectorTest (testPublishAndSubscribe())
+- MqttClientControlPacketTest (custom test)
 
 EOF.
