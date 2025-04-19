@@ -15,6 +15,10 @@ How does your implementation work?
 Steps:
 
 - PIOT-GDA-07-000: Git "labmodule07" branch created.
+  
+- PIOT-GDA-07-001: The **MqttClientConnector** class has been implemented within the `programmingtheiot.cda.connection` package to provide MQTT communication capabilities for the application. This class implements both the `IPubSubClient` and `MqttCallbackExtended` interfaces and includes logic for initializing and configuring a MQTT client using values retrieved from a configuration file. The constructor sets up the broker address, port, keep-alive interval, and other connection options such as clean sessions and auto-reconnect. The core functionality for establishing and terminating connections with the MQTT broker has been implemented in the `connectClient()` and `disconnectClient()` methods, with appropriate logging and exception handling. Placeholder methods for publishing, subscribing, unsubscribing, and message handling have been added, with detailed implementation to follow in future exercises. Additionally, a method to set the `IDataMessageListener` has been included, and the necessary callback methods for MQTT events have been stubbed out. This setup ensures that the class is ready for integration testing and can successfully establish and close connections with an MQTT broker as verified by the `testConnectAndDisconnect()` test.
+
+  
 
 ### Code Repository and Branch
 
@@ -42,6 +46,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 integration tests
 - All part02 integration tests
-- 
+- MqttClientConnectorTest (testConnectAndDisconnect())
 
 EOF.
