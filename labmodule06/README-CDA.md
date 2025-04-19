@@ -17,7 +17,7 @@ The implementation works by establishing a full MQTT communication flow, startin
 
 Steps:
 
-- PIOT-CDA-06-000: Git "labmodule05" branch created.
+- PIOT-CDA-06-000: Git "labmodule06" branch created.
   
 - PIOT-CDA-06-001: The **MqttClientConnector** class was implemented within the `programmingtheiot.cda.connection` package, following the `IPubSubClient` interface. The constructor was created to initialize the MQTT client properties by retrieving configuration values such as the host, port, keep-alive interval, and client ID from the `PiotConfig.props` file using the `ConfigUtil` class. The `connectClient()` method was implemented to establish a connection to the MQTT broker and start the MQTT network loop, while the `disconnectClient()` method was added to properly disconnect from the broker and stop the loop. The remaining interface methods—`publishMessage()`, `subscribeToTopic()`, and `setDataMessageListener()`—were stubbed with basic logging statements for future development. Finally, the `testConnectAndDisconnect()` integration test was run to verify that the MQTT client could successfully connect to and disconnect from the broker.
 
