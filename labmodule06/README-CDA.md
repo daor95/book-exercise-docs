@@ -331,7 +331,7 @@ Also, in the **Keep-Alive Messages**:
 1. By default, the MQTT client sends a **PINGREQ** to the broker periodically.
 2. The broker responds with **PINGRESP**.
 
-
+- PIOT-CDA-06-100: The code updates within the labmodule06 branch were reviewed and verified. All part01, part02 and lab6 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule06 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
 
 
 
