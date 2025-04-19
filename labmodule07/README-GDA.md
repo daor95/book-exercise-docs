@@ -14,13 +14,13 @@ How does your implementation work?
 
 Steps:
 
-- PIOT-GDA-07-000: 
+- PIOT-GDA-07-000: Git "labmodule07" branch created.
 
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
 
-URL: 
+URL: https://github.com/daor95/java-components/tree/labmodule07
 
 
 ### Unit Tests Executed
