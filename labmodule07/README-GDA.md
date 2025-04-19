@@ -20,6 +20,8 @@ Steps:
 
 - PIOT-GDA-07-002: The **MqttClientConnector** class has been updated to implement the MQTT callback methods defined by the `MqttCallbackExtended` interface. These include `connectComplete()`, which now logs a confirmation message when the client connects or reconnects to the broker; `connectionLost()`, which logs a warning when the connection to the broker is lost; and `deliveryComplete()`, which logs the successful delivery of a published message. Additionally, the `messageArrived()` method has been implemented to log a message whenever a new MQTT message is received on a subscribed topic. These enhancements allow the connector to provide real-time feedback on MQTT communication events, improving visibility into connection status and message flow. With these additions, the `testConnectAndDisconnect()` integration test confirms that the client not only connects and disconnects successfully but also logs relevant MQTT events.
 
+- PIOT-GDA-07-003: The **MqttClientConnector** class has been enhanced to support MQTT publish and subscribe capabilities. The `publishMessage()` method was implemented to validate the topic and QoS level, convert the message to a byte payload, and publish it to the specified topic, with error handling and logging. Similarly, the `subscribeToTopic()` and `unsubscribeFromTopic()` methods were implemented to manage topic subscriptions and ensure valid parameters, while also logging the outcomes. A class-level `DEFAULT_QOS` constant was introduced to handle invalid QoS values. Additionally, the `isConnected()` method was completed to accurately reflect the client’s current connection status. These updates enable the class to participate fully in MQTT communication, including receiving and handling callbacks for successful delivery (`deliveryComplete`) and incoming messages (`messageArrived`). With these changes, the integration test `testPublishAndSubscribe()` now executes successfully, demonstrating that the class can reliably connect to a broker, manage topic subscriptions, publish messages, and receive them through proper callback handling.
+
   
 
 ### Code Repository and Branch
@@ -49,5 +51,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - All part01 integration tests
 - All part02 integration tests
 - MqttClientConnectorTest (testConnectAndDisconnect())
+- MqttClientConnectorTest (testPublishAndSubscribe())
 
 EOF.
