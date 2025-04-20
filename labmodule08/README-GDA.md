@@ -57,6 +57,8 @@ CoAP RFC 7252                                  Cf 4.0.0-SNAPSHOT
 
 - PIOT-CFG-08-002: "aiocoap" has been installed.
 
+- PIOT-GDA-08-000: Git "labmodule08" branch created.
+
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
