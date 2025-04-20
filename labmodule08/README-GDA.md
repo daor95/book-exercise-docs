@@ -59,11 +59,17 @@ CoAP RFC 7252                                  Cf 4.0.0-SNAPSHOT
 
 - PIOT-GDA-08-000: Git "labmodule08" branch created.
 
+- PIOT-GDA-08-001: The **CoapServerGateway** class was implemented within the `programmingtheiot.gda.connection` package to enable CoAP server functionality. The implementation utilized the Eclipse Californium CoAP library and was developed following Option 1, creating a constructor that accepts an `IDataMessageListener` instance and instantiates the CoAP server without default resource handlers.
+The necessary import statements were included, along with static initializers (`CoapConfig.register()` and `UdpConfig.register()`) to ensure compatibility with Californium versions greater than 3.8.0. Core class-scoped variables (`coapServer` and `dataMsgListener`) were declared, and the constructor was defined to assign the listener and invoke the `initServer()` method. Although the `initServer()` method currently contains no logic, it establishes the structure for adding resource handlers in future modules.
+A convenience method, `setDataMessageListener`, was added to allow reconfiguration of the listener reference if needed. Additionally, methods to start and stop the CoAP server were implemented, including logic to trace messages via the `MessageTracer` interceptor and to handle exceptions.
+Integration with the **DeviceDataManager** class was completed by introducing a configuration flag (`enableCoapServer`) that enables or disables CoAP server support based on the properties defined in `PiotConfig.props`. Conditional logic was added to the `initManager()`, `startManager()`, and `stopManager()` methods to initialize and control the lifecycle of the CoAP server accordingly. A class-scoped instance of `CoapServerGateway` was instantiated and managed within `DeviceDataManager` when CoAP functionality is enabled.
+
+
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
 
-URL: 
+URL: https://github.com/daor95/java-components/tree/labmodule08
 
 
 ### Unit Tests Executed
