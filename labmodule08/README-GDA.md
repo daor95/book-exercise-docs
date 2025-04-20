@@ -55,6 +55,7 @@ CoAP RFC 7252                                  Cf 4.0.0-SNAPSHOT
 ****************************************************************
 ```
 
+- PIOT-CFG-08-002: "aiocoap" has been installed.
 
 ### Code Repository and Branch
 
