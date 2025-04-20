@@ -8,9 +8,9 @@ Be sure to implement all the PIOT-GDA-* issues (requirements) listed.
 
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
-What does your implementation do? 
+**What does your implementation do?** The implementation provides full MQTT communication capabilities within the Gateway Device Application (GDA) by implementing the MqttClientConnector class and integrating it with the DeviceDataManager. The solution starts with creating a configurable and extensible MQTT connector that adheres to the IPubSubClient and MqttCallbackExtended interfaces, allowing the GDA to publish and subscribe to MQTT topics dynamically. The connector uses Paho’s synchronous (asynchronous not yet implemented) MqttClient and is configured through ConfigUtil, allowing parameters like broker address, port, keep-alive interval, and QoS level to be defined externally. The connectClient() and disconnectClient() methods manage the lifecycle of the connection, while the connector logs important events using the defined callback methods for connection status, message delivery, and message arrival. 
 
-How does your implementation work?
+**How does your implementation work?** Integration into DeviceDataManager enables MQTT-based message exchange in the GDA. Depending on the enableMqttClient configuration, the manager instantiates the MqttClientConnector and registers itself as a data listener. During startup (startManager()), the MQTT client connects to the broker and subscribes to relevant topics, and during shutdown (stopManager()), it unsubscribes and cleanly disconnects. A custom integration test class, MqttClientControlPacketTest, was implemented to validate the end-to-end flow of all 14 MQTT 3.1.1 control packets. The test confirms that the implementation supports all QoS levels and accurately triggers the expected packet exchanges, including PUBLISH, SUBSCRIBE, UNSUBSCRIBE, PINGREQ, and DISCONNECT flows. WireShark was used to verify the protocol-level behavior and ensure that control packets match the MQTT 3.1.1 specification across multiple QoS scenarios.
 
 Steps:
 
@@ -52,7 +52,7 @@ The data packets recevied can be classified in one of the 14 Control Packets for
   
 If we divide it in cycles, we can see the differences among the different levels of QoS:
 
-**First cycle (all control packets, QoS 0 where applicable):**
+**QoS 0 (first) cycle (all control packets, QoS 0 where applicable):**
 
 | Control Packet | Wireshark “Type”               | Packet No. (first cycle)      |
 | -------------- | ------------------------------ | ----------------------------- |
@@ -73,7 +73,7 @@ If we divide it in cycles, we can see the differences among the different levels
 
 ---
 
-**QoS 1 cycle**
+**QoS 1 (second) cycle**
 
 | Control Packet    | Wireshark “Type”               | Packet No.  |
 | ----------------- | ------------------------------ | ----------- |
@@ -88,7 +88,7 @@ If we divide it in cycles, we can see the differences among the different levels
 
 ---
 
-**QoS 2 cycle**
+**QoS 2 (third) cycle**
 
 | Control Packet      | Wireshark “Type”               | Packet No.  |
 | ------------------- | ------------------------------ | ----------- |
@@ -104,7 +104,7 @@ If we divide it in cycles, we can see the differences among the different levels
 
 ---
 
-Over the three test runs (first with QoS 0, then QoS 1, and finally QoS 2) all fourteen MQTT 3.1.1 control packet types and are captured in Wireshark.
+Over the three test runs (first with QoS 0, then QoS 1, and finally QoS 2) all fourteen MQTT 3.1.1 control packet types are captured in Wireshark.
 
 1. **Initial cycle (QoS 0 where applicable)**  
    - **CONNECT/CONNACK**: The client establishes a clean session.  
