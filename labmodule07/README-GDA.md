@@ -123,6 +123,7 @@ Over the three test runs (first with QoS 0, then QoS 1, and finally QoS 2) al
    - Finally, unsubscribe and disconnect.  
 
 
+- PIOT-GDA-07-100: The code updates within the labmodule07 branch were reviewed and verified. All part01, part02 and lab7 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule07 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
 
 
 
