@@ -68,6 +68,12 @@ Integration with the **DeviceDataManager** class was completed by introducing a 
 All four CoAP methods—`handleGET`, `handlePUT`, `handlePOST`, and `handleDELETE`—were overridden in both handler classes. For initial testing, each method logs a message and sends an appropriate response to the client using the `CoapExchange` object. The primary logic was focused on the `handlePUT` method, which receives and logs the payload, accepts the request, and attempts to parse the incoming JSON string into either a `SystemPerformanceData` or `SensorData` object.
 Upon successful parsing, the data is forwarded to the `DeviceDataManager` via the `dataMsgListener`, and a `CHANGED` response is returned. In the event of a failure, appropriate fallback response codes (`BAD_REQUEST`, `CONTINUE`, etc.) are used, and exceptions are logged for debugging.
 
+- PIOT-GDA-08-003: A new CoAP resource handler class named **GetActuatorCommandResourceHandler** was created and implemented in the `programmingtheiot.gda.connection.handlers` package. Modeled after `GenericCoapResourceHandler`, this class enables the GDA to support CoAP **OBSERVE** functionality, allowing the CDA to receive asynchronous actuation command updates after initiating a GET request.
+The class extends `CoapResource` and implements the `IActuatorDataListener` interface, requiring the implementation of the `onActuatorDataUpdate(ActuatorData data)` method. This method updates the stored actuator data and notifies all observing clients using the `changed()` method, ensuring that the CDA receives the latest actuation commands in real time.
+A constructor accepting a single resource name was implemented. Within it, the resource was marked observable using `setObservable(true)`. A class-scoped `ActuatorData` variable was defined to maintain the latest actuation state.
+The `handleGET()` method was overridden to accept incoming GET requests, convert the current `ActuatorData` instance to JSON using `DataUtil`, and respond with this data using an appropriate CoAP `ResponseCode.CONTENT` response. The implementation includes logging for debugging and proper handling of the request lifecycle via `CoapExchange`.
+
+
 
 
 ### Code Repository and Branch
