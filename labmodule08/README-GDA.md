@@ -64,6 +64,11 @@ The necessary import statements were included, along with static initializers (`
 A convenience method, `setDataMessageListener`, was added to allow reconfiguration of the listener reference if needed. Additionally, methods to start and stop the CoAP server were implemented, including logic to trace messages via the `MessageTracer` interceptor and to handle exceptions.
 Integration with the **DeviceDataManager** class was completed by introducing a configuration flag (`enableCoapServer`) that enables or disables CoAP server support based on the properties defined in `PiotConfig.props`. Conditional logic was added to the `initManager()`, `startManager()`, and `stopManager()` methods to initialize and control the lifecycle of the CoAP server accordingly. A class-scoped instance of `CoapServerGateway` was instantiated and managed within `DeviceDataManager` when CoAP functionality is enabled.
 
+- PIOT-GDA-08-002: Two new CoAP resource handler classes, **UpdateSystemPerformanceResourceHandler** and **UpdateTelemetryResourceHandler**, were created and implemented within the `programmingtheiot.gda.connection.handlers` package. These classes were modeled after the provided `GenericCoapResourceHandler` and extend the `CoapResource` class from the Eclipse Californium CoAP library. Each class includes a one-argument constructor that accepts a resource name, which is passed to the superclass, and a class-scoped variable to store a reference to an `IDataMessageListener`. A `setDataMessageListener` method was implemented in both classes to allow message callbacks to the `DeviceDataManager`.
+All four CoAP methods—`handleGET`, `handlePUT`, `handlePOST`, and `handleDELETE`—were overridden in both handler classes. For initial testing, each method logs a message and sends an appropriate response to the client using the `CoapExchange` object. The primary logic was focused on the `handlePUT` method, which receives and logs the payload, accepts the request, and attempts to parse the incoming JSON string into either a `SystemPerformanceData` or `SensorData` object.
+Upon successful parsing, the data is forwarded to the `DeviceDataManager` via the `dataMsgListener`, and a `CHANGED` response is returned. In the event of a failure, appropriate fallback response codes (`BAD_REQUEST`, `CONTINUE`, etc.) are used, and exceptions are logged for debugging.
+
+
 
 ### Code Repository and Branch
 
@@ -78,7 +83,7 @@ NOTE: The instructor will execute your unit tests. You only need to list each te
 (e.g. ConfigUtilTest, DataUtilTest, etc). Be sure to include all previous tests, too,
 since you need to ensure you haven't introduced regressions.
 
-- 
+- All part01 and part02 unit tests
 - 
 - 
 
@@ -89,7 +94,7 @@ some exceptions (such as your cloud connectivity tests). In such cases, they'll 
 your code to ensure it's correct. As for the tests you execute, you only need to list each
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
-- 
+- All part01 and part02 integration tests
 - 
 - 
 
