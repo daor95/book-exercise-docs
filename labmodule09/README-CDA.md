@@ -38,6 +38,13 @@ To validate functionality, two tests were created in `CoapClientConnectorTest`: 
 ![CoAP PUT expanded](https://github.com/user-attachments/assets/e09a200e-0f65-48a8-9996-d25b5ddd1c7d)
 
 
+- PIOT-CDA-09-004: The **CoapClientConnector** module has been extended by implementing support for **POST requests** using the `aiocoap` library. The newly added `sendPostRequest()` method enables asynchronous POST operations, supporting both Confirmable (CON) and Non-confirmable (NON) message types. The method constructs the CoAP URI based on a `ResourceNameEnum` value and an optional resource name, encodes the payload as UTF-8, and delegates the request to the `_handlePostRequest()` coroutine. This coroutine sends the POST request to the server and processes the response using the `_onPostResponse()` callback, which logs the payload if a valid response is received.
+To validate the implementation, two tests, `CoapClientConnectorTest`: `testPostSensorMessageCon` and `testPostSensorMessageNon`, have been used. These tests send a serialized `SensorData` payload to the server using POST requests with different message types. While the tests execute correctly, the current GDA server implementation does not support POST for the `SensorMsg` endpoint. This behavior was expected. Output:
+
+![CoAP POST](https://github.com/user-attachments/assets/61dd7b8f-6de9-4e9e-9e61-03b0eeb49e2b)
+
+![CoAP Post Expanded](https://github.com/user-attachments/assets/b6e2e135-9c8a-4a43-872a-abddb4d679a7)
+
 
 
 ### Code Repository and Branch
