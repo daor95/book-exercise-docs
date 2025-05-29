@@ -30,6 +30,15 @@ With the Discovery output:
 
 ![Coap Extended Discovery](https://github.com/user-attachments/assets/54e357c6-bc21-4d7f-8201-cbd34c89b768)
 
+- PIOT-CDA-09-003: Continued enhancing of the **CoapClientConnector** by adding support for **PUT requests** using the `aiocoap` library. This implementation enables the sending of both Confirmable (CON) and Non-confirmable (NON) PUT requests to the CoAP server. The `sendPutRequest()` method constructs the appropriate URI path using `ResourceNameEnum` and any specified resource name, encodes the payload as UTF-8, and asynchronously sends the PUT request via the `_handlePutRequest()` coroutine. The response is processed by the `_onPutResponse()` method, which logs the result and verifies the success of the operation.
+To validate functionality, two tests were created in `CoapClientConnectorTest`: one for CON messages and another for NON messages. These tests simulate the transmission of `SensorData` payloads to the server, converting them to JSON using `DataUtil`. The tests are designed to interact with a running instance of the GDA, and their outcomes can be verified via log output and packet inspection with Wireshark. 
+
+![CoAP PUT](https://github.com/user-attachments/assets/cfbcb0cd-f269-4e78-bcf2-07b2ff3cf17d)
+
+![CoAP PUT expanded](https://github.com/user-attachments/assets/e09a200e-0f65-48a8-9996-d25b5ddd1c7d)
+
+
+
 
 ### Code Repository and Branch
 
