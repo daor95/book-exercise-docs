@@ -54,6 +54,12 @@ To test this functionality, two tests were used (`CoapClientConnectorTest`: `tes
 ![CoAP Delete Extended](https://github.com/user-attachments/assets/92e75edf-b9cf-4df5-bde0-2c2e98918ae2)
 
 
+- PIOT-CDA-09-006: Implemented support for **OBSERVE requests** in the **CoapClientConnector** module using the `aiocoap` library. This involved adding two new methods, `startObserver()` and `stopObserver()`, which manage CoAP observation subscriptions for resources such as actuator commands. The implementation tracks active observations using a dictionary that maps resource paths to their associated request objects. The `startObserver()` method constructs an asynchronous GET request with the `observe=0` flag, processes the initial response, and listens for updates using an `async for` loop over the observation stream. The `stopObserver()` method safely cancels active subscriptions and removes them from the tracking dictionary.
+To support incoming observation updates, the existing `_onGetResponse()` callback was reused, ensuring that each received message is parsed and forwarded to the appropriate `IDataMessageListener`. A helper class named `HandleActuatorEvent` was also implemented, encapsulating the logic needed to decode and handle incoming `ActuatorData` in response to observe notifications.
+Integration test `testActuatorCommandObserve()` within `CoapClientConnectorTest` to validate both the start and stop observer functionality. The test includes a timed delay to allow for multiple updates to be received from the server. Log outputs from the test confirm that the observation stream is active, with multiple updates being processed and logged before the observer is correctly canceled. This completes the CoAP client’s full suite of request types (GET, POST, PUT, DELETE, and OBSERVE), making it fully compliant with the `IRequestResponseClient` interface and capable of interacting robustly with CoAP-based IoT servers.
+
+
+
 
 
 ### Code Repository and Branch
