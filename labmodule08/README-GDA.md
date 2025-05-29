@@ -138,7 +138,360 @@ Generic handler. No GET action taken: SensorMsg
 ===============================================================
 ```
 
+- **PIOT-STU-08-002**: Deferred tests have been executed. Some modifications have been added to **CoapClientConnector** class to enable the tests to properly run.
 
+  **CoAP Discovery (PIOT-GDA-08-002)**:  
+  The log shows a successful integration test of the CoAP server and client. **Key results**:
+
+  - The CoAP server started and listened on a dynamically assigned UDP port.
+  - The client sent a discovery request to the server.
+  - The server responded with a list of available resources.
+
+  **Resources discovered**:
+  - `/PIOT`
+  - `/PIOT/ConstrainedDevice`
+  - `/PIOT/ConstrainedDevice/ActuatorCmd`
+  - `/PIOT/ConstrainedDevice/SensorMsg`
+  - `/PIOT/ConstrainedDevice/SystemPerfMsg`
+
+  **Outcome**:  
+  Communication between client and server was successful, with proper request/response handling and no errors reported.
+
+  <details>
+    <pre><code>
+    05:28:09.900 [main] DEBUG org.eclipse.californium.elements.util.NetworkInterfacesUtil -- Found broadcast address /10.0.2.255 - enp0s3.
+    05:28:09.901 [main] INFO org.eclipse.californium.core.network.RandomTokenGenerator -- using tokens of 8 bytes in length
+    05:28:09.901 [main] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap using TokenProvider org.eclipse.californium.core.network.RandomTokenGenerator
+    05:28:09.901 [main] INFO org.eclipse.californium.core.network.CoapEndpoint -- coap CoapEndpoint uses udp context
+    05:28:09.902 [main] INFO org.eclipse.californium.core.network.stack.BlockwiseLayer -- coap BlockwiseLayer uses MAX_MESSAGE_SIZE=1024, PREFERRED_BLOCK_SIZE=512, BLOCKWISE_STATUS_LIFETIME=300000, MAX_RESOURCE_BODY_SIZE=8192, BLOCKWISE_STRICT_BLOCK2_OPTION=false
+    05:28:09.902 [main] INFO org.eclipse.californium.core.network.CoapEndpoint -- coap Endpoint [coap://0.0.0.0:0] requires an executor to start, using default single-threaded daemon executor
+    05:28:09.903 [main] DEBUG org.eclipse.californium.core.network.CoapEndpoint -- coap Starting endpoint at coap://0.0.0.0:0
+    05:28:09.903 [main] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap no MessageIdProvider set, using default org.eclipse.californium.core.network.InMemoryMessageIdProvider
+    05:28:09.904 [main] INFO org.eclipse.californium.elements.UDPConnector -- UDPConnector starts up 2 sender threads and 2 receiver threads
+    05:28:09.904 [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]]
+    05:28:09.905 [main] INFO org.eclipse.californium.elements.UDPConnector -- UDPConnector listening on /[0:0:0:0:0:0:0:0]:56941, recv buf = 106496, send buf = 106496, recv packet size = 2048
+    05:28:09.905 [UDP-Receiver-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Receiver-0.0.0.0/0.0.0.0:0[1]]
+    05:28:09.905 [UDP-Sender-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:0[1]]
+    05:28:09.905 [UDP-Sender-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:0[0]]
+    05:28:09.905 [main] INFO org.eclipse.californium.core.network.CoapEndpoint -- coap Started endpoint at coap://[0:0:0:0:0:0:0:0]:56941
+    05:28:09.905 [main] INFO org.eclipse.californium.core.network.EndpointManager -- created implicit endpoint coap://[0:0:0:0:0:0:0:0]:56941 for coap
+    05:28:09.909 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L1, localhost:5683] send request
+    05:28:09.909 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L1, localhost:5683] prepare retransmission for CON-GET    MID=   -1, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":[".well-known","core"]}, <empty data>
+    05:28:09.911 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L1, localhost:5683] added with generated mid KeyMID[localhost/127.0.0.1:5683-28056], CON-GET    MID=28056, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":[".well-known","core"]}, <empty data>
+    05:28:09.912 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L1, localhost:5683] added with generated token KeyToken[localhost/127.0.0.1:5683-84FCC8893110ADCB], CON-GET    MID=28056, Token=84FCC8893110ADCB, OptionSet={"Uri-Host":"localhost", "Uri-Path":[".well-known","core"]}, <empty data>
+    05:28:09.912 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open request [KeyMID[localhost/127.0.0.1:5683-28056], KeyToken[localhost/127.0.0.1:5683-84FCC8893110ADCB]]
+    05:28:09.915 [UDP-Sender-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#38,UDP-Sender-0.0.0.0/0.0.0.0:0[1],5,Californium/Elements]) sent 39 bytes to localhost/127.0.0.1:5683
+    05:28:09.915 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 39 bytes from 127.0.0.1:56941
+    05:28:09.917 [CoapServer(main)#4] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) ==> req CON-GET    MID=28056, Token=84FCC8893110ADCB, OptionSet={"Uri-Host":"localhost", "Uri-Path":[".well-known","core"]}, <empty data>
+    05:28:09.917 [CoapServer(main)#4] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:56941-28056]
+    05:28:09.923 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R2, 127.0.0.1:56941] send response null-2.05   MID=   -1, Token=null, OptionSet={"Content-Format":"application/link-format"}, "</PIOT>,</PIOT/ConstrainedDevice".. 151 bytes
+    05:28:09.925 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.Exchange -- Exchange[R2, 127.0.0.1:56941, complete]!
+    05:28:09.925 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.Exchange -- Remote Exchange[R2, 127.0.0.1:56941, complete] completed ACK-2.05   MID=28056, Token=84FCC8893110ADCB, OptionSet={"Content-Format":"application/link-format"}, "</PIOT>,</PIOT/ConstrainedDevice".. 151 bytes!
+    05:28:09.925 [CoapServer(main)#5] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) <== res ACK-2.05   MID=28056, Token=84FCC8893110ADCB, OptionSet={"Content-Format":"application/link-format"}, "</PIOT>,</PIOT/ConstrainedDevice".. 151 bytes
+    05:28:09.926 [UDP-Sender-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#32,UDP-Sender-0.0.0.0/0.0.0.0:5683[0],5,Californium/Elements]) sent 166 bytes to 127.0.0.1:56941
+    05:28:09.926 [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:56941) received 166 bytes from 127.0.0.1:5683
+    05:28:09.927 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- Exchange[L1, localhost:5683, complete]!
+    05:28:09.927 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L1, localhost:5683, complete] for token KeyToken[localhost/127.0.0.1:5683-84FCC8893110ADCB]
+    05:28:09.927 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L1, localhost:5683, complete] for MID KeyMID[localhost/127.0.0.1:5683-28056]
+    05:28:09.927 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- local Exchange[L1, localhost:5683, complete] completed CON-GET    MID=28056, Token=84FCC8893110ADCB, OptionSet={"Uri-Host":"localhost", "Uri-Path":[".well-known","core"]}, acked <empty data>!
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.CoapClientConnector sendDiscoveryRequest
+    INFO: Discovered resource: /PIOT
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.CoapClientConnector sendDiscoveryRequest
+    INFO: Discovered resource: /PIOT/ConstrainedDevice
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.CoapClientConnector sendDiscoveryRequest
+    INFO: Discovered resource: /PIOT/ConstrainedDevice/ActuatorCmd
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.CoapClientConnector sendDiscoveryRequest
+    INFO: Discovered resource: /PIOT/ConstrainedDevice/SensorMsg
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.CoapClientConnector sendDiscoveryRequest
+    INFO: Discovered resource: /PIOT/ConstrainedDevice/SystemPerfMsg
+    </code></pre>
+  </details>
+
+  ---
+
+  **SystemPerformancePutMessage (PIOT-GDA-08-002)**:
+  
+  CoAP PUT request for system performance message has been executed.
+  The log shows a successful PUT request from the CoAP client to the system performance resource on the server. **Key results**:
+
+    - The CoAP server initialized correctly and started listening on UDP port `35298`.
+    - A PUT request was sent to `/PIOT/ConstrainedDevice/SystemPerfMsg` with a JSON payload containing system metrics (`cpuUtil`, `diskUtil`, `memUtil`).
+    - The server received, acknowledged, and processed the PUT request.
+    - A response with code `2.04 Changed` was returned indicating successful handling.
+
+  **Request details**:
+    - **Method**: PUT (Confirmable)
+    - **Payload Format**: `application/json`
+    - **Payload Content**:
+      ```json
+      {
+        "cpuUtil": 0.0,
+        "diskUtil": 0.0,
+        "memUtil": 0.0,
+        "name": "SysPerfData",
+        "typeID": 0,
+        "statusCode": 0,
+        "hasError": false,
+        "locationID": "gatewaydevice001",
+        "latitude": 0.0,
+        "longitude": 0.0,
+        "elevation": 0.0
+      }
+      ```
+  - **Response Message**: `"Update system perf data request handled: SystemPerfMsg"`
+
+  **Outcome**:  
+  The PUT request was handled successfully. The server parsed and acknowledged the data with a `2.04 Changed` response, confirming that system performance information was updated on the resource endpoint.
+
+  <details>
+    <pre><code>
+    /home/pic/.jdks/openjdk-23.0.2/bin/java -javaagent:/snap/intellij-idea-community/609/plugins/java/lib/rt/debugger-agent.jar=file:///tmp/capture10431406645990037625.props -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:/snap/intellij-idea-community/609/lib/idea_rt.jar=38317 -Dkotlinx.coroutines.debug.enable.creation.stack.trace=false -Ddebugger.agent.enable.coroutines=true -Dkotlinx.coroutines.debug.enable.flows.stack.trace=true -Dkotlinx.coroutines.debug.enable.mutable.state.flows.stack.trace=true -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /snap/intellij-idea-community/609/lib/idea_rt.jar:/snap/intellij-idea-community/609/plugins/junit/lib/junit5-rt.jar:/snap/intellij-idea-community/609/plugins/junit/lib/junit-rt.jar:/home/pic/Documents/PIC/java-components/target/test-classes:/home/pic/Documents/PIC/java-components/target/classes:/home/pic/.m2/repository/com/google/code/gson/gson/2.11.0/gson-2.11.0.jar:/home/pic/.m2/repository/com/google/errorprone/error_prone_annotations/2.27.0/error_prone_annotations-2.27.0.jar:/home/pic/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/pic/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/pic/.m2/repository/ch/qos/logback/logback-classic/1.5.18/logback-classic-1.5.18.jar:/home/pic/.m2/repository/ch/qos/logback/logback-core/1.5.18/logback-core-1.5.18.jar:/home/pic/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/pic/.m2/repository/org/apache/commons/commons-configuration2/2.11.0/commons-configuration2-2.11.0.jar:/home/pic/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/home/pic/.m2/repository/org/apache/commons/commons-text/1.12.0/commons-text-1.12.0.jar:/home/pic/.m2/repository/commons-logging/commons-logging/1.3.2/commons-logging-1.3.2.jar:/home/pic/.m2/repository/commons-cli/commons-cli/1.9.0/commons-cli-1.9.0.jar:/home/pic/.m2/repository/org/eclipse/paho/org.eclipse.paho.mqttv5.client/1.2.5/org.eclipse.paho.mqttv5.client-1.2.5.jar:/home/pic/.m2/repository/org/eclipse/californium/californium-core/3.12.1/californium-core-3.12.1.jar:/home/pic/.m2/repository/org/eclipse/californium/californium-legal/3.12.1/californium-legal-3.12.1.jar:/home/pic/.m2/repository/org/eclipse/californium/element-connector/3.12.1/element-connector-3.12.1.jar:/home/pic/.m2/repository/org/eclipse/californium/scandium/3.12.1/scandium-3.12.1.jar:/home/pic/.m2/repository/redis/clients/jedis/5.2.0/jedis-5.2.0.jar:/home/pic/.m2/repository/org/apache/commons/commons-pool2/2.12.0/commons-pool2-2.12.0.jar:/home/pic/.m2/repository/org/json/json/20240303/json-20240303.jar:/home/pic/.m2/repository/com/influxdb/influxdb-client-java/7.2.0/influxdb-client-java-7.2.0.jar:/home/pic/.m2/repository/com/influxdb/influxdb-client-core/7.2.0/influxdb-client-core-7.2.0.jar:/home/pic/.m2/repository/com/influxdb/influxdb-client-utils/7.2.0/influxdb-client-utils-7.2.0.jar:/home/pic/.m2/repository/com/squareup/okio/okio/3.9.0/okio-3.9.0.jar:/home/pic/.m2/repository/com/squareup/okio/okio-jvm/3.9.0/okio-jvm-3.9.0.jar:/home/pic/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.9.21/kotlin-stdlib-1.9.21.jar:/home/pic/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar:/home/pic/.m2/repository/com/squareup/okhttp3/okhttp/4.12.0/okhttp-4.12.0.jar:/home/pic/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.21/kotlin-stdlib-jdk8-1.8.21.jar:/home/pic/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.21/kotlin-stdlib-jdk7-1.8.21.jar:/home/pic/.m2/repository/com/squareup/retrofit2/retrofit/2.11.0/retrofit-2.11.0.jar:/home/pic/.m2/repository/com/squareup/okhttp3/logging-interceptor/4.12.0/logging-interceptor-4.12.0.jar:/home/pic/.m2/repository/org/apache/commons/commons-csv/1.11.0/commons-csv-1.11.0.jar:/home/pic/.m2/repository/commons-io/commons-io/2.16.1/commons-io-2.16.1.jar:/home/pic/.m2/repository/io/reactivex/rxjava3/rxjava/3.1.8/rxjava-3.1.8.jar:/home/pic/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/home/pic/.m2/repository/com/squareup/retrofit2/adapter-rxjava3/2.11.0/adapter-rxjava3-2.11.0.jar:/home/pic/.m2/repository/com/squareup/retrofit2/converter-scalars/2.11.0/converter-scalars-2.11.0.jar:/home/pic/.m2/repository/com/squareup/retrofit2/converter-gson/2.11.0/converter-gson-2.11.0.jar:/home/pic/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/home/pic/.m2/repository/jakarta/mail/jakarta.mail-api/2.1.3/jakarta.mail-api-2.1.3.jar:/home/pic/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/pic/.m2/repository/com/amazonaws/aws-iot-device-sdk-java/1.3.13/aws-iot-device-sdk-java-1.3.13.jar:/home/pic/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.4/jackson-core-2.13.4.jar:/home/pic/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.4.2/jackson-databind-2.13.4.2.jar:/home/pic/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.4/jackson-annotations-2.13.4.jar:/home/pic/.m2/repository/org/eclipse/paho/org.eclipse.paho.client.mqttv3/1.2.4/org.eclipse.paho.client.mqttv3-1.2.4.jar:/home/pic/.m2/repository/com/amazonaws/aws-java-sdk-secretsmanager/1.12.315/aws-java-sdk-secretsmanager-1.12.315.jar:/home/pic/.m2/repository/com/amazonaws/aws-java-sdk-core/1.12.315/aws-java-sdk-core-1.12.315.jar:/home/pic/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/home/pic/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/home/pic/.m2/repository/software/amazon/ion/ion-java/1.0.2/ion-java-1.0.2.jar:/home/pic/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-cbor/2.12.6/jackson-dataformat-cbor-2.12.6.jar:/home/pic/.m2/repository/joda-time/joda-time/2.8.1/joda-time-2.8.1.jar:/home/pic/.m2/repository/com/amazonaws/jmespath-java/1.12.315/jmespath-java-1.12.315.jar:/home/pic/.m2/repository/com/amazonaws/aws-iot-device-sdk-java-samples/1.3.13/aws-iot-device-sdk-java-samples-1.3.13.jar:/home/pic/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/home/pic/.m2/repository/com/microsoft/azure/sdk/iot/iot-device-client/2.5.0/iot-device-client-2.5.0.jar:/home/pic/.m2/repository/org/apache/qpid/proton-j/0.34.1/proton-j-0.34.1.jar:/home/pic/.m2/repository/com/microsoft/azure/qpid-proton-j-extensions/1.2.4/qpid-proton-j-extensions-1.2.4.jar:/home/pic/.m2/repository/com/microsoft/azure/sdk/iot/provisioning/security/security-provider/2.0.1/security-provider-2.0.1.jar com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 programmingtheiot.part03.integration.connection.CoapClientToServerConnectorTest,testSystemPerformancePutMessage
+    05:56:12.194 [main] INFO org.eclipse.californium.elements.config.Configuration -- defaults added COAP.
+    05:56:12.207 [main] INFO org.eclipse.californium.elements.config.Configuration -- defaults added SYS.
+    05:56:12.208 [main] INFO org.eclipse.californium.elements.config.Configuration -- defaults added UDP.
+    05:56:12.220 [main] INFO org.eclipse.californium.elements.config.Configuration -- loading properties from file /home/pic/Documents/PIC/java-components/Californium3.properties
+    May 29, 2025 5:56:12 AM programmingtheiot.gda.connection.CoapServerGateway initServer
+    INFO: No resources provided for server initialization.
+    May 29, 2025 5:56:12 AM programmingtheiot.gda.connection.CoapServerGateway createAndAddResourceChain
+    INFO: Adding server resource handler chain: PIOT/ConstrainedDevice/ActuatorCmd
+    May 29, 2025 5:56:12 AM programmingtheiot.gda.connection.CoapServerGateway createAndAddResourceChain
+    INFO: Adding server resource handler chain: PIOT/ConstrainedDevice/SensorMsg
+    May 29, 2025 5:56:12 AM programmingtheiot.gda.connection.CoapServerGateway createAndAddResourceChain
+    INFO: Adding server resource handler chain: PIOT/ConstrainedDevice/SystemPerfMsg
+    05:56:12.264 [main] INFO org.eclipse.californium.core.CoapServer -- Starting server
+    05:56:12.271 [main] DEBUG org.eclipse.californium.elements.util.ExecutorsUtil -- remove on cancel: true, split: true, log-diff: 10000
+    05:56:12.279 [main] INFO org.eclipse.californium.core.CoapServer -- no endpoints have been defined for server, setting up server endpoint on default port 5683
+    05:56:12.287 [main] INFO org.eclipse.californium.core.network.RandomTokenGenerator -- using tokens of 8 bytes in length
+    05:56:12.298 [main] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap using TokenProvider org.eclipse.californium.core.network.RandomTokenGenerator
+    05:56:12.312 [main] INFO org.eclipse.californium.ban -- Started.
+    05:56:12.313 [main] INFO org.eclipse.californium.core.network.CoapEndpoint -- coap CoapEndpoint uses udp context
+    05:56:12.324 [main] INFO org.eclipse.californium.core.network.stack.BlockwiseLayer -- coap BlockwiseLayer uses MAX_MESSAGE_SIZE=1024, PREFERRED_BLOCK_SIZE=512, BLOCKWISE_STATUS_LIFETIME=300000, MAX_RESOURCE_BODY_SIZE=8192, BLOCKWISE_STRICT_BLOCK2_OPTION=false
+    05:56:12.332 [main] DEBUG org.eclipse.californium.core.network.CoapEndpoint -- coap Starting endpoint at coap://0.0.0.0:5683
+    05:56:12.334 [main] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap no MessageIdProvider set, using default org.eclipse.californium.core.network.InMemoryMessageIdProvider
+    05:56:12.345 [main] INFO org.eclipse.californium.elements.UDPConnector -- UDPConnector starts up 2 sender threads and 2 receiver threads
+    05:56:12.349 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Receiver-0.0.0.0/0.0.0.0:5683[0]]
+    05:56:12.349 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Receiver-0.0.0.0/0.0.0.0:5683[1]]
+    05:56:12.352 [main] INFO org.eclipse.californium.elements.UDPConnector -- UDPConnector listening on /[0:0:0:0:0:0:0:0]:5683, recv buf = 106496, send buf = 106496, recv packet size = 2048
+    05:56:12.352 [UDP-Sender-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:5683[0]]
+    05:56:12.352 [UDP-Sender-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:5683[1]]
+    05:56:12.352 [main] INFO org.eclipse.californium.core.network.CoapEndpoint -- coap Started endpoint at coap://[0:0:0:0:0:0:0:0]:5683
+    05:56:12.970 [main] DEBUG org.eclipse.californium.elements.util.NetworkInterfacesUtil -- Found broadcast address /10.0.2.255 - enp0s3.
+    05:56:12.971 [main] INFO org.eclipse.californium.core.network.RandomTokenGenerator -- using tokens of 8 bytes in length
+    05:56:12.971 [main] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap using TokenProvider org.eclipse.californium.core.network.RandomTokenGenerator
+    05:56:12.971 [main] INFO org.eclipse.californium.core.network.CoapEndpoint -- coap CoapEndpoint uses udp context
+    05:56:12.971 [main] INFO org.eclipse.californium.core.network.stack.BlockwiseLayer -- coap BlockwiseLayer uses MAX_MESSAGE_SIZE=1024, PREFERRED_BLOCK_SIZE=512, BLOCKWISE_STATUS_LIFETIME=300000, MAX_RESOURCE_BODY_SIZE=8192, BLOCKWISE_STRICT_BLOCK2_OPTION=false
+    05:56:12.971 [main] INFO org.eclipse.californium.core.network.CoapEndpoint -- coap Endpoint [coap://0.0.0.0:0] requires an executor to start, using default single-threaded daemon executor
+    05:56:12.973 [main] DEBUG org.eclipse.californium.core.network.CoapEndpoint -- coap Starting endpoint at coap://0.0.0.0:0
+    05:56:12.973 [main] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap no MessageIdProvider set, using default org.eclipse.californium.core.network.InMemoryMessageIdProvider
+    05:56:12.973 [main] INFO org.eclipse.californium.elements.UDPConnector -- UDPConnector starts up 2 sender threads and 2 receiver threads
+    05:56:12.974 [UDP-Receiver-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Receiver-0.0.0.0/0.0.0.0:0[1]]
+    05:56:12.974 [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]]
+    05:56:12.974 [UDP-Sender-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:0[0]]
+    05:56:12.974 [main] INFO org.eclipse.californium.elements.UDPConnector -- UDPConnector listening on /[0:0:0:0:0:0:0:0]:35298, recv buf = 106496, send buf = 106496, recv packet size = 2048
+    05:56:12.974 [main] INFO org.eclipse.californium.core.network.CoapEndpoint -- coap Started endpoint at coap://[0:0:0:0:0:0:0:0]:35298
+    05:56:12.974 [UDP-Sender-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- Starting network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:0[1]]
+    05:56:12.974 [main] INFO org.eclipse.californium.core.network.EndpointManager -- created implicit endpoint coap://[0:0:0:0:0:0:0:0]:35298 for coap
+    05:56:12.978 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L1, localhost:5683] send request
+    05:56:12.978 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L1, localhost:5683] prepare retransmission for CON-PUT    MID=   -1, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"], "Content-Format":"application/json"}, "{"cpuUtil":0.0,"diskUtil":0.0,"m".. 247 bytes
+    05:56:12.981 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L1, localhost:5683] added with generated mid KeyMID[localhost/127.0.0.1:5683-53051], CON-PUT    MID=53051, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"], "Content-Format":"application/json"}, "{"cpuUtil":0.0,"diskUtil":0.0,"m".. 247 bytes
+    05:56:12.982 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L1, localhost:5683] added with generated token KeyToken[localhost/127.0.0.1:5683-18B593F853F614E2], CON-PUT    MID=53051, Token=18B593F853F614E2, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"], "Content-Format":"application/json"}, "{"cpuUtil":0.0,"diskUtil":0.0,"m".. 247 bytes
+    05:56:12.982 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open request [KeyMID[localhost/127.0.0.1:5683-53051], KeyToken[localhost/127.0.0.1:5683-18B593F853F614E2]]
+    05:56:12.986 [UDP-Sender-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#37,UDP-Sender-0.0.0.0/0.0.0.0:0[0],5,Californium/Elements]) sent 311 bytes to localhost/127.0.0.1:5683
+    05:56:12.986 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 311 bytes from 127.0.0.1:35298
+    05:56:12.988 [CoapServer(main)#4] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:35298) ==> req CON-PUT    MID=53051, Token=18B593F853F614E2, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"], "Content-Format":"application/json"}, "{"cpuUtil":0.0,"diskUtil":0.0,"m".. 247 bytes
+    05:56:12.988 [CoapServer(main)#4] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:35298-53051]
+    05:56:12.991 [CoapServer(main)#5] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:35298) <== emp ACK        MID=53051
+    05:56:12.993 [UDP-Sender-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#32,UDP-Sender-0.0.0.0/0.0.0.0:5683[0],5,Californium/Elements]) sent 4 bytes to 127.0.0.1:35298
+    05:56:12.993 [UDP-Receiver-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:35298) received 4 bytes from 127.0.0.1:5683
+    05:56:12.994 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L1, localhost:5683] for MID KeyMID[127.0.0.1:5683-53051]
+    05:56:12.994 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- received expected ACK reply for KeyMID[127.0.0.1:5683-53051]
+    05:56:12.995 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L1, localhost:5683] acknowledge ACK        MID=53051 for request CON-PUT    MID=53051, Token=18B593F853F614E2, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"], "Content-Format":"application/json"}, "{"cpuUtil":0.0,"diskUtil":0.0,"m".. 247 bytes (2 msg observer)
+    May 29, 2025 5:56:12 AM programmingtheiot.common.DefaultDataMessageListener handleSystemPerformanceMessage
+    INFO: Topic: PIOT/ConstrainedDevice/SystemPerfMsg, Message: name=SysPerfData,typeID=0,timeStamp=2025-05-29T03:56:12.920122297Z,statusCode=0,hasError=false,locationID=gatewaydevice001,latitude=0.0,longitude=0.0,elevation=0.0,cpuUtil=0.0,diskUtil=0.0,memUtil=0.0
+    05:56:12.999 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R2, 127.0.0.1:35298] send response null-2.04   MID=   -1, Token=null, OptionSet={"Content-Format":"text/plain"}, "Update system perf data request ".. 54 bytes
+    05:56:12.999 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R2, 127.0.0.1:35298] prepare retransmission for CON-2.04   MID=   -1, Token=null, OptionSet={"Content-Format":"text/plain"}, "Update system perf data request ".. 54 bytes
+    05:56:12.999 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[R2, 127.0.0.1:35298] added with generated mid KeyMID[127.0.0.1:35298-10569], CON-2.04   MID=10569, Token=18B593F853F614E2, OptionSet={"Content-Format":"text/plain"}, "Update system perf data request ".. 54 bytes
+    05:56:12.999 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open response [KeyMID[127.0.0.1:35298-10569]]
+    05:56:12.999 [CoapServer(main)#5] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:35298) <== res CON-2.04   MID=10569, Token=18B593F853F614E2, OptionSet={"Content-Format":"text/plain"}, "Update system perf data request ".. 54 bytes
+    05:56:13.000 [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:35298) received 68 bytes from 127.0.0.1:5683
+    05:56:13.001 [UDP-Sender-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#33,UDP-Sender-0.0.0.0/0.0.0.0:5683[1],5,Californium/Elements]) sent 68 bytes to 127.0.0.1:35298
+    05:56:13.001 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:5683-10569]
+    05:56:13.001 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L1, localhost:5683] acknowledging CON response
+    05:56:13.001 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- Exchange[L1, localhost:5683, complete]!
+    05:56:13.001 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L1, localhost:5683, complete] for token KeyToken[localhost/127.0.0.1:5683-18B593F853F614E2]
+    05:56:13.001 [UDP-Sender-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#38,UDP-Sender-0.0.0.0/0.0.0.0:0[1],5,Californium/Elements]) sent 4 bytes to 127.0.0.1:5683
+    05:56:13.001 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- local Exchange[L1, localhost:5683, complete] completed CON-PUT    MID=53051, Token=18B593F853F614E2, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"], "Content-Format":"application/json"}, acked "{"cpuUtil":0.0,"diskUtil":0.0,"m".. 247 bytes!
+    05:56:13.002 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 4 bytes from 127.0.0.1:35298
+    05:56:13.002 [CoapServer(main)#1] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:35298) ==> emp ACK        MID=10569
+    05:56:13.002 [CoapServer(main)#2] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[R2, 127.0.0.1:35298] for MID KeyMID[127.0.0.1:35298-10569]
+    05:56:13.002 [CoapServer(main)#2] DEBUG org.eclipse.californium.core.network.UdpMatcher -- received expected ACK reply for KeyMID[127.0.0.1:35298-10569]
+    05:56:13.002 [CoapServer(main)#2] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R2, 127.0.0.1:35298] acknowledge ACK        MID=10569 for response CON-2.04   MID=10569, Token=18B593F853F614E2, OptionSet={"Content-Format":"text/plain"}, "Update system perf data request ".. 54 bytes (2 msg observer)
+    May 29, 2025 5:56:13 AM programmingtheiot.gda.connection.CoapClientConnector sendPutRequest
+    INFO: PUT response for coap://localhost:5683/PIOT/ConstrainedDevice/SystemPerfMsg: Update system perf data request handled: SystemPerfMsg
+    May 29, 2025 5:56:13 AM programmingtheiot.part03.integration.connection.CoapClientToServerConnectorTest testSystemPerformancePutMessage
+    INFO: PUT request result: true
+    05:56:13.007 [main] INFO org.eclipse.californium.core.CoapServer -- Stopping server ...
+    05:56:13.007 [main] DEBUG org.eclipse.californium.core.network.CoapEndpoint -- coap Stopping endpoint at coap://[0:0:0:0:0:0:0:0]:5683
+    05:56:13.007 [main] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector on [/[0:0:0:0:0:0:0:0]:5683] stopping ...
+    05:56:13.008 [main] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector on [/[0:0:0:0:0:0:0:0]:5683] has stopped.
+    05:56:13.008 [main] DEBUG org.eclipse.californium.core.network.CoapEndpoint -- coap Stopped endpoint at coap://[0:0:0:0:0:0:0:0]:5683
+    05:56:13.008 [main] INFO org.eclipse.californium.core.CoapServer -- Stopped server.
+    
+    Process finished with exit code 0
+    </code></pre>
+  </details>
+
+  ---
+
+  **CoAP GET (PIOT-CDA-08-003)**:
+  
+  CoAP GET requests to individual resources have been executed. 
+  The log shows a successful test of GET requests from the CoAP client to multiple resource endpoints on the server. **Key results**:
+
+  - The client sent confirmable GET requests to three resources.
+  - The server responded with appropriate CoAP response codes.
+  - Message exchanges were tracked and acknowledged correctly.
+
+  **Resources tested**:
+
+  - `/PIOT/ConstrainedDevice/ActuatorCmd`  
+    - **Response Code:** `2.05 Content`  
+    - **Response Data:** *(empty)*  
+    - **Outcome:** Successfully handled. Server acknowledged and completed exchange.
+
+  - `/PIOT/ConstrainedDevice/SensorMsg`  
+    - **Response Code:** `2.03 Valid`  
+    - **Response Data:** `"Generic handler. No GET action taken: SensorMsg"`  
+    - **Outcome:** Successfully handled. No specific GET logic implemented for this resource.
+
+  - `/PIOT/ConstrainedDevice/SystemPerfMsg`  
+    - **Response Code:** `2.03 Valid`  
+    - **Response Data:** `"No system performance data available: SystemPerfMsg"`  
+    - **Outcome:** Successfully handled. Server reports no performance data available.
+
+  **Overall Outcome**:  
+  All requests and responses were properly exchanged with no errors. The CoAP server correctly processed each request, matched tokens and message IDs, and responded reliably over UDP.
+
+  <details>
+    <pre><code>
+    05:28:09.939 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L3, localhost:5683] send request
+    05:28:09.939 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L3, localhost:5683] prepare retransmission for CON-GET    MID=   -1, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","ActuatorCmd"]}, <empty data>
+    05:28:09.940 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L3, localhost:5683] added with generated mid KeyMID[localhost/127.0.0.1:5683-28057], CON-GET    MID=28057, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","ActuatorCmd"]}, <empty data>
+    05:28:09.940 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L3, localhost:5683] added with generated token KeyToken[localhost/127.0.0.1:5683-B4797DCA4923A2C6], CON-GET    MID=28057, Token=B4797DCA4923A2C6, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","ActuatorCmd"]}, <empty data>
+    05:28:09.940 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open request [KeyMID[localhost/127.0.0.1:5683-28057], KeyToken[localhost/127.0.0.1:5683-B4797DCA4923A2C6]]
+    05:28:09.941 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 58 bytes from 127.0.0.1:56941
+    05:28:09.941 [UDP-Sender-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#37,UDP-Sender-0.0.0.0/0.0.0.0:0[0],5,Californium/Elements]) sent 58 bytes to localhost/127.0.0.1:5683
+    05:28:09.941 [CoapServer(main)#6] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) ==> req CON-GET    MID=28057, Token=B4797DCA4923A2C6, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","ActuatorCmd"]}, <empty data>
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.handlers.GetActuatorCommandResourceHandler handleGET
+    INFO: GET request received for resource: /PIOT/ConstrainedDevice/ActuatorCmd with query: 
+    05:28:09.942 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:56941-28057]
+    05:28:09.944 [CoapServer(main)#6] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) <== emp ACK        MID=28057
+    05:28:09.946 [UDP-Sender-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#33,UDP-Sender-0.0.0.0/0.0.0.0:5683[1],5,Californium/Elements]) sent 4 bytes to 127.0.0.1:56941
+    05:28:09.946 [UDP-Receiver-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:56941) received 4 bytes from 127.0.0.1:5683
+    05:28:09.946 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R4, 127.0.0.1:56941] send response null-2.05   MID=   -1, Token=null, OptionSet={"Content-Format":"application/json"}, <empty data>
+    05:28:09.946 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R4, 127.0.0.1:56941] prepare retransmission for CON-2.05   MID=   -1, Token=null, OptionSet={"Content-Format":"application/json"}, <empty data>
+    05:28:09.947 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[R4, 127.0.0.1:56941] added with generated mid KeyMID[127.0.0.1:56941-16847], CON-2.05   MID=16847, Token=B4797DCA4923A2C6, OptionSet={"Content-Format":"application/json"}, <empty data>
+    05:28:09.948 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open response [KeyMID[127.0.0.1:56941-16847]]
+    05:28:09.948 [CoapServer(main)#6] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) <== res CON-2.05   MID=16847, Token=B4797DCA4923A2C6, OptionSet={"Content-Format":"application/json"}, <empty data>
+    05:28:09.949 [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:56941) received 14 bytes from 127.0.0.1:5683
+    05:28:09.949 [UDP-Sender-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#32,UDP-Sender-0.0.0.0/0.0.0.0:5683[0],5,Californium/Elements]) sent 14 bytes to 127.0.0.1:56941
+    05:28:09.949 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L3, localhost:5683] for MID KeyMID[127.0.0.1:5683-28057]
+    05:28:09.949 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- received expected ACK reply for KeyMID[127.0.0.1:5683-28057]
+    05:28:09.949 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L3, localhost:5683] acknowledge ACK        MID=28057 for request CON-GET    MID=28057, Token=B4797DCA4923A2C6, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","ActuatorCmd"]}, <empty data> (2 msg observer)
+    05:28:09.949 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:5683-16847]
+    05:28:09.950 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L3, localhost:5683] acknowledging CON response
+    05:28:09.950 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- Exchange[L3, localhost:5683, complete]!
+    05:28:09.950 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L3, localhost:5683, complete] for token KeyToken[localhost/127.0.0.1:5683-B4797DCA4923A2C6]
+    05:28:09.950 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- local Exchange[L3, localhost:5683, complete] completed CON-GET    MID=28057, Token=B4797DCA4923A2C6, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","ActuatorCmd"]}, acked <empty data>!
+    05:28:09.950 [UDP-Sender-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#38,UDP-Sender-0.0.0.0/0.0.0.0:0[1],5,Californium/Elements]) sent 4 bytes to 127.0.0.1:5683
+    05:28:09.950 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 4 bytes from 127.0.0.1:56941
+    05:28:09.950 [CoapServer(main)#4] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) ==> emp ACK        MID=16847
+    05:28:09.950 [CoapServer(main)#4] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[R4, 127.0.0.1:56941] for MID KeyMID[127.0.0.1:56941-16847]
+    05:28:09.950 [CoapServer(main)#4] DEBUG org.eclipse.californium.core.network.UdpMatcher -- received expected ACK reply for KeyMID[127.0.0.1:56941-16847]
+    05:28:09.950 [CoapServer(main)#4] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R4, 127.0.0.1:56941] acknowledge ACK        MID=16847 for response CON-2.05   MID=16847, Token=B4797DCA4923A2C6, OptionSet={"Content-Format":"application/json"}, <empty data> (2 msg observer)
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.CoapClientConnector sendGetRequest
+    INFO: GET response for coap://localhost:5683/PIOT/ConstrainedDevice/ActuatorCmd: 
+    May 29, 2025 5:28:09 AM programmingtheiot.part03.integration.connection.CoapClientToServerConnectorTest testGetEachResource
+    INFO: GET request for PIOT/ConstrainedDevice/ActuatorCmd was successful
+    05:28:09.956 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L5, localhost:5683] send request
+    05:28:09.956 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L5, localhost:5683] prepare retransmission for CON-GET    MID=   -1, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SensorMsg"]}, <empty data>
+    05:28:09.956 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L5, localhost:5683] added with generated mid KeyMID[localhost/127.0.0.1:5683-28058], CON-GET    MID=28058, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SensorMsg"]}, <empty data>
+    05:28:09.957 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L5, localhost:5683] added with generated token KeyToken[localhost/127.0.0.1:5683-0CBD6487BC67346F], CON-GET    MID=28058, Token=0CBD6487BC67346F, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SensorMsg"]}, <empty data>
+    05:28:09.957 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open request [KeyMID[localhost/127.0.0.1:5683-28058], KeyToken[localhost/127.0.0.1:5683-0CBD6487BC67346F]]
+    05:28:09.958 [UDP-Sender-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#37,UDP-Sender-0.0.0.0/0.0.0.0:0[0],5,Californium/Elements]) sent 56 bytes to localhost/127.0.0.1:5683
+    05:28:09.958 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 56 bytes from 127.0.0.1:56941
+    05:28:09.958 [CoapServer(main)#1] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) ==> req CON-GET    MID=28058, Token=0CBD6487BC67346F, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SensorMsg"]}, <empty data>
+    05:28:09.958 [CoapServer(main)#1] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:56941-28058]
+    05:28:09.958 [CoapServer(main)#6] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) <== emp ACK        MID=28058
+    05:28:09.959 [UDP-Sender-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#33,UDP-Sender-0.0.0.0/0.0.0.0:5683[1],5,Californium/Elements]) sent 4 bytes to 127.0.0.1:56941
+    05:28:09.959 [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:56941) received 4 bytes from 127.0.0.1:5683
+    05:28:09.959 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R6, 127.0.0.1:56941] send response null-2.03   MID=   -1, Token=null, OptionSet={"Content-Format":"text/plain"}, "Generic handler. No GET action t".. 47 bytes
+    05:28:09.959 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R6, 127.0.0.1:56941] prepare retransmission for CON-2.03   MID=   -1, Token=null, OptionSet={"Content-Format":"text/plain"}, "Generic handler. No GET action t".. 47 bytes
+    05:28:09.959 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[R6, 127.0.0.1:56941] added with generated mid KeyMID[127.0.0.1:56941-16848], CON-2.03   MID=16848, Token=0CBD6487BC67346F, OptionSet={"Content-Format":"text/plain"}, "Generic handler. No GET action t".. 47 bytes
+    05:28:09.959 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L5, localhost:5683] for MID KeyMID[127.0.0.1:5683-28058]
+    05:28:09.959 [CoapServer(main)#6] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open response [KeyMID[127.0.0.1:56941-16848]]
+    05:28:09.959 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- received expected ACK reply for KeyMID[127.0.0.1:5683-28058]
+    05:28:09.959 [CoapServer(main)#6] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) <== res CON-2.03   MID=16848, Token=0CBD6487BC67346F, OptionSet={"Content-Format":"text/plain"}, "Generic handler. No GET action t".. 47 bytes
+    05:28:09.960 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L5, localhost:5683] acknowledge ACK        MID=28058 for request CON-GET    MID=28058, Token=0CBD6487BC67346F, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SensorMsg"]}, <empty data> (2 msg observer)
+    05:28:09.960 [UDP-Sender-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#32,UDP-Sender-0.0.0.0/0.0.0.0:5683[0],5,Californium/Elements]) sent 61 bytes to 127.0.0.1:56941
+    05:28:09.960 [UDP-Receiver-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:56941) received 61 bytes from 127.0.0.1:5683
+    05:28:09.960 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:5683-16848]
+    05:28:09.960 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L5, localhost:5683] acknowledging CON response
+    05:28:09.960 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- Exchange[L5, localhost:5683, complete]!
+    05:28:09.960 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L5, localhost:5683, complete] for token KeyToken[localhost/127.0.0.1:5683-0CBD6487BC67346F]
+    05:28:09.961 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- local Exchange[L5, localhost:5683, complete] completed CON-GET    MID=28058, Token=0CBD6487BC67346F, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SensorMsg"]}, acked <empty data>!
+    05:28:09.961 [UDP-Sender-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#38,UDP-Sender-0.0.0.0/0.0.0.0:0[1],5,Californium/Elements]) sent 4 bytes to 127.0.0.1:5683
+    05:28:09.961 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 4 bytes from 127.0.0.1:56941
+    05:28:09.961 [CoapServer(main)#5] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) ==> emp ACK        MID=16848
+    05:28:09.961 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[R6, 127.0.0.1:56941] for MID KeyMID[127.0.0.1:56941-16848]
+    05:28:09.961 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.UdpMatcher -- received expected ACK reply for KeyMID[127.0.0.1:56941-16848]
+    05:28:09.961 [CoapServer(main)#5] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R6, 127.0.0.1:56941] acknowledge ACK        MID=16848 for response CON-2.03   MID=16848, Token=0CBD6487BC67346F, OptionSet={"Content-Format":"text/plain"}, "Generic handler. No GET action t".. 47 bytes (2 msg observer)
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.CoapClientConnector sendGetRequest
+    INFO: GET response for coap://localhost:5683/PIOT/ConstrainedDevice/SensorMsg: Generic handler. No GET action taken: SensorMsg
+    May 29, 2025 5:28:09 AM programmingtheiot.part03.integration.connection.CoapClientToServerConnectorTest testGetEachResource
+    INFO: GET request for PIOT/ConstrainedDevice/SensorMsg was successful
+    05:28:09.962 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L7, localhost:5683] send request
+    05:28:09.962 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L7, localhost:5683] prepare retransmission for CON-GET    MID=   -1, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"]}, <empty data>
+    05:28:09.963 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L7, localhost:5683] added with generated mid KeyMID[localhost/127.0.0.1:5683-28059], CON-GET    MID=28059, Token=null, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"]}, <empty data>
+    05:28:09.963 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[L7, localhost:5683] added with generated token KeyToken[localhost/127.0.0.1:5683-5CA8655D098AEA18], CON-GET    MID=28059, Token=5CA8655D098AEA18, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"]}, <empty data>
+    05:28:09.963 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open request [KeyMID[localhost/127.0.0.1:5683-28059], KeyToken[localhost/127.0.0.1:5683-5CA8655D098AEA18]]
+    05:28:09.964 [UDP-Sender-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#37,UDP-Sender-0.0.0.0/0.0.0.0:0[0],5,Californium/Elements]) sent 61 bytes to localhost/127.0.0.1:5683
+    05:28:09.964 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 61 bytes from 127.0.0.1:56941
+    05:28:09.965 [CoapServer(main)#1] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) ==> req CON-GET    MID=28059, Token=5CA8655D098AEA18, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"]}, <empty data>
+    05:28:09.965 [CoapServer(main)#1] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:56941-28059]
+    05:28:09.965 [CoapServer(main)#1] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) <== emp ACK        MID=28059
+    05:28:09.966 [UDP-Sender-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#33,UDP-Sender-0.0.0.0/0.0.0.0:5683[1],5,Californium/Elements]) sent 4 bytes to 127.0.0.1:56941
+    05:28:09.966 [UDP-Receiver-0.0.0.0/0.0.0.0:0[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:56941) received 4 bytes from 127.0.0.1:5683
+    05:28:09.966 [CoapServer(main)#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R8, 127.0.0.1:56941] send response null-2.03   MID=   -1, Token=null, OptionSet={"Content-Format":"text/plain"}, "No system performance data avail".. 51 bytes
+    05:28:09.966 [CoapServer(main)#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R8, 127.0.0.1:56941] prepare retransmission for CON-2.03   MID=   -1, Token=null, OptionSet={"Content-Format":"text/plain"}, "No system performance data avail".. 51 bytes
+    05:28:09.966 [CoapServer(main)#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap Exchange[R8, 127.0.0.1:56941] added with generated mid KeyMID[127.0.0.1:56941-16849], CON-2.03   MID=16849, Token=5CA8655D098AEA18, OptionSet={"Content-Format":"text/plain"}, "No system performance data avail".. 51 bytes
+    05:28:09.966 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L7, localhost:5683] for MID KeyMID[127.0.0.1:5683-28059]
+    05:28:09.966 [CoapServer(main)#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- tracking open response [KeyMID[127.0.0.1:56941-16849]]
+    05:28:09.966 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.UdpMatcher -- received expected ACK reply for KeyMID[127.0.0.1:5683-28059]
+    05:28:09.966 [CoapServer(main)#1] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) <== res CON-2.03   MID=16849, Token=5CA8655D098AEA18, OptionSet={"Content-Format":"text/plain"}, "No system performance data avail".. 51 bytes
+    05:28:09.966 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L7, localhost:5683] acknowledge ACK        MID=28059 for request CON-GET    MID=28059, Token=5CA8655D098AEA18, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"]}, <empty data> (2 msg observer)
+    05:28:09.967 [UDP-Sender-0.0.0.0/0.0.0.0:5683[0]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#32,UDP-Sender-0.0.0.0/0.0.0.0:5683[0],5,Californium/Elements]) sent 65 bytes to 127.0.0.1:56941
+    05:28:09.967 [UDP-Receiver-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:56941) received 65 bytes from 127.0.0.1:5683
+    05:28:09.967 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.deduplication.SweepDeduplicator -- add exchange for KeyMID[127.0.0.1:5683-16849]
+    05:28:09.967 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[L7, localhost:5683] acknowledging CON response
+    05:28:09.967 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- Exchange[L7, localhost:5683, complete]!
+    05:28:09.967 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[L7, localhost:5683, complete] for token KeyToken[localhost/127.0.0.1:5683-5CA8655D098AEA18]
+    05:28:09.967 [UDP-Sender-0.0.0.0/0.0.0.0:0[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector (Thread[#38,UDP-Sender-0.0.0.0/0.0.0.0:0[1],5,Californium/Elements]) sent 4 bytes to 127.0.0.1:5683
+    05:28:09.967 [:CoapEndpoint-UDP-0.0.0.0:0#1] DEBUG org.eclipse.californium.core.network.Exchange -- local Exchange[L7, localhost:5683, complete] completed CON-GET    MID=28059, Token=5CA8655D098AEA18, OptionSet={"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"]}, acked <empty data>!
+    05:28:09.967 [UDP-Receiver-0.0.0.0/0.0.0.0:5683[1]] DEBUG org.eclipse.californium.elements.UDPConnector -- UDPConnector ([0:0:0:0:0:0:0:0]:5683) received 4 bytes from 127.0.0.1:56941
+    May 29, 2025 5:28:09 AM programmingtheiot.gda.connection.CoapClientConnector sendGetRequest
+    INFO: GET response for coap://localhost:5683/PIOT/ConstrainedDevice/SystemPerfMsg: No system performance data available: SystemPerfMsg
+    05:28:09.968 [CoapServer(main)#4] INFO org.eclipse.californium.core.network.interceptors.MessageTracer -- UDP(127.0.0.1:56941) ==> emp ACK        MID=16849
+    05:28:09.968 [CoapServer(main)#4] DEBUG org.eclipse.californium.core.network.InMemoryMessageExchangeStore -- coap removing Exchange[R8, 127.0.0.1:56941] for MID KeyMID[127.0.0.1:56941-16849]
+    05:28:09.968 [CoapServer(main)#4] DEBUG org.eclipse.californium.core.network.UdpMatcher -- received expected ACK reply for KeyMID[127.0.0.1:56941-16849]
+    05:28:09.968 [CoapServer(main)#4] DEBUG org.eclipse.californium.core.network.stack.ReliabilityLayer -- Exchange[R8, 127.0.0.1:56941] acknowledge ACK        MID=16849 for response CON-2.03   MID=16849, Token=5CA8655D098AEA18, OptionSet={"Content-Format":"text/plain"}, "No system performance data avail".. 51 bytes (2 msg observer)
+    May 29, 2025 5:28:09 AM programmingtheiot.part03.integration.connection.CoapClientToServerConnectorTest testGetEachResource
+    INFO: GET request for PIOT/ConstrainedDevice/SystemPerfMsg was successful
+
+    </code></pre>
+  </details>
+
+  ---
 
 
 
