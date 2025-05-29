@@ -8,9 +8,12 @@ Be sure to implement all the PIOT-CDA-* issues (requirements) listed.
 
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
-What does your implementation do? 
+**What does your implementation do?**
+The implementation provides full CoAP client functionality for a constrained device application using the `aiocoap` library. The CoAP client is encapsulated within the `CoapClientConnector` module, which complies with the `IRequestResponseClient` interface and integrates with the overall system via the `DeviceDataManager`. This client supports all core CoAP operations, including GET, POST, PUT, DELETE, and OBSERVE, enabling communication with a CoAP server to exchange sensor and actuator data. In addition to supporting synchronous request-response operations, the client also handles long-lived observation requests, allowing the device to receive updates asynchronously. Each request type is handled with support for both Confirmable (CON) and Non-confirmable (NON) messages, allowing for flexible interactions with different server configurations.
 
-How does your implementation work?
+**How does your implementation work?**
+The `CoapClientConnector` initializes an asynchronous CoAP client context using `aiocoap` and loads its configuration dynamically from `PiotConfig.props` via `ConfigUtil`. Each request method (GET, POST, PUT, DELETE) constructs the appropriate resource path, encodes payloads when needed, and dispatches the request using asynchronous coroutines. Responses are processed through dedicated callback methods that decode the data and route it to the registered `IDataMessageListener` (typically the `DeviceDataManager`). Observation functionality is handled using the `startObserver()` and `stopObserver()` methods, which manage a dictionary of active subscriptions. Observed responses are processed through a loop that triggers data updates until explicitly canceled. The implementation is fully tested through unit and integration test cases, validated via Wireshark packet captures, and confirmed to be compatible with the server-side GDA when configured accordingly.
+
 
 Steps:
 
