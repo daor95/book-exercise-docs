@@ -45,6 +45,10 @@ The `mosquitto.conf` file was customized to include TLS settings via an `include
 - PIOT-CDA-10-001: The **MqttClientConnector** class in the CDA application was updated to support TLS-encrypted connections to an MQTT broker. This enhancement involved modifying the constructor to read encryption settings and certificate paths from the configuration file (`PiotConfig.props`). Additionally, the `connectClient()` method was extended to conditionally enable TLS using Python’s `ssl` module when encryption is configured.
 Specifically, the implementation checks if TLS is enabled, sets the secure port, and applies the appropriate PEM certificate using `tls_set()`. The client connection logic remains backward compatible, falling back to an unencrypted connection if TLS setup fails. These changes were verified by rerunning the `MqttClientConnectorTest` without TLS enabled, ensuring the connector continues to operate correctly in non-secure mode.
 
+- PIOT-CDA-10-002: The CDA was updated to support incoming `ActuatorData` command messages from the Gateway Device. This involved extending the **IDataMessageListener** interface with a new method, `handleActuatorCommandMessage()`, and implementing this method within the **DeviceDataManager** class. The implementation forwards the actuator command to the actuator manager for processing, after basic validation.
+To verify the changes, Option 1 was used: disabling MQTT and CoAP communication through the `PiotConfig.props` configuration file. A new integration test script, `DeviceDataManagerCallbackTest`, was created based on an existing test case. This test successfully executed a sample actuator command and confirmed the expected log output, indicating that the actuator logic was triggered and processed correctly.
+
+
 
 
 ### Code Repository and Branch
