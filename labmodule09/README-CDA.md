@@ -46,6 +46,15 @@ To validate the implementation, two tests, `CoapClientConnectorTest`: `testPostS
 ![CoAP Post Expanded](https://github.com/user-attachments/assets/b6e2e135-9c8a-4a43-872a-abddb4d679a7)
 
 
+- PIOT-CDA-09-005: Added CoAP client implementation by adding support for **DELETE requests** in the **CoapClientConnector** class using the `aiocoap` library. The `sendDeleteRequest()` method was implemented to handle both Confirmable (CON) and Non-confirmable (NON) message types. This method constructs a resource URI based on parameters and asynchronously invokes `_handleDeleteRequest()`, which builds and sends a DELETE message using the `aiocoap` client context. Upon receiving a response, the `_onDeleteResponse()` callback logs the result or warns if the response is invalid.
+To test this functionality, two tests were used (`CoapClientConnectorTest`: `testDeleteSensorMessageCon` and `testDeleteSensorMessageNon`), which issue DELETE requests to the CoAP server targeting the `SensorMsg` resource. Although these tests execute correctly, the server does not currently support DELETE requests for this endpoint (expected behaviour). Output:
+
+![CoAP Delete](https://github.com/user-attachments/assets/6cc8ed83-996c-4c9d-96c0-36d951623419)
+
+![CoAP Delete Extended](https://github.com/user-attachments/assets/92e75edf-b9cf-4df5-bde0-2c2e98918ae2)
+
+
+
 
 ### Code Repository and Branch
 
