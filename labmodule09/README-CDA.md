@@ -12,6 +12,10 @@ What does your implementation do?
 
 How does your implementation work?
 
+Steps:
+
+- PIOT-CDA-09-000: Git "labmodule09" branch created.
+
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
@@ -26,7 +30,7 @@ NOTE: The instructor will execute your unit tests. You only need to list each te
 (e.g. ConfigUtilTest, DataUtilTest, etc). Be sure to include all previous tests, too,
 since you need to ensure you haven't introduced regressions.
 
-- 
+- All part01 and part02 unit tests
 - 
 - 
 
@@ -37,7 +41,7 @@ some exceptions (such as your cloud connectivity tests). In such cases, they'll 
 your code to ensure it's correct. As for the tests you execute, you only need to list each
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
-- 
+- All part01 and part02 integration tests
 - 
 - 
 
