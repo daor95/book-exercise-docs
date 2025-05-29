@@ -58,7 +58,7 @@ To test this functionality, two tests were used (`CoapClientConnectorTest`: `tes
 To support incoming observation updates, the existing `_onGetResponse()` callback was reused, ensuring that each received message is parsed and forwarded to the appropriate `IDataMessageListener`. A helper class named `HandleActuatorEvent` was also implemented, encapsulating the logic needed to decode and handle incoming `ActuatorData` in response to observe notifications.
 Integration test `testActuatorCommandObserve()` within `CoapClientConnectorTest` to validate both the start and stop observer functionality. The test includes a timed delay to allow for multiple updates to be received from the server. Log outputs from the test confirm that the observation stream is active, with multiple updates being processed and logged before the observer is correctly canceled. This completes the CoAP client’s full suite of request types (GET, POST, PUT, DELETE, and OBSERVE), making it fully compliant with the `IRequestResponseClient` interface and capable of interacting robustly with CoAP-based IoT servers.
 
-
+- PIOT-STU-09-002: Already included in the previous PIOTs.
 
 
 
