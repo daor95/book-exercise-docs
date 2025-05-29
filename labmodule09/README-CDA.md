@@ -60,6 +60,8 @@ Integration test `testActuatorCommandObserve()` within `CoapClientConnectorTest`
 
 - PIOT-STU-09-002: Already included in the previous PIOTs.
 
+- PIOT-CDA-09-100: The code updates within the labmodule09 branch were reviewed and verified. All part01, part02, lab6 and lab9 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule09 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
+
 
 
 ### Code Repository and Branch
