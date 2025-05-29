@@ -48,6 +48,11 @@ Specifically, the implementation checks if TLS is enabled, sets the secure port,
 - PIOT-CDA-10-002: The CDA was updated to support incoming `ActuatorData` command messages from the Gateway Device. This involved extending the **IDataMessageListener** interface with a new method, `handleActuatorCommandMessage()`, and implementing this method within the **DeviceDataManager** class. The implementation forwards the actuator command to the actuator manager for processing, after basic validation.
 To verify the changes, Option 1 was used: disabling MQTT and CoAP communication through the `PiotConfig.props` configuration file. A new integration test script, `DeviceDataManagerCallbackTest`, was created based on an existing test case. This test successfully executed a sample actuator command and confirmed the expected log output, indicating that the actuator logic was triggered and processed correctly.
 
+- PIOT-CDA-10-003: The **MqttClientConnector** class was enhanced to support receiving `ActuatorData` command messages from the GDA. To enable this, a listener interface (`IDataMessageListener`) was integrated via a new `setDataMessageListener()` method, allowing incoming messages to be routed to the appropriate handler in the `DeviceDataManager`.
+A callback method, `onActuatorCommandMessage()`, was implemented to process received actuator command messages. This method decodes the JSON payload into an `ActuatorData` object using the `DataUtil` utility and forwards it to the configured listener. The MQTT client was also updated to subscribe to the appropriate actuator command topic upon a successful connection, using topic-specific callbacks to ensure targeted handling.
+Additionally, the previously blocking `msgInfo.wait_for_publish()` call in the `publishMessage()` method was commented out to avoid deadlock and allow asynchronous message processing. The new functionality was verified using a dedicated integration test (`testNewActuatorCmdPubSub`), confirming that messages were correctly subscribed to, received, and routed, with expected log output validating the flow.
+
+
 
 
 
@@ -77,6 +82,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 and part02 integration tests
 - MqttClientConnectorTest
-- 
+- DeviceDataManagerCallbackTest
 
 EOF.
