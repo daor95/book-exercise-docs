@@ -52,6 +52,9 @@ To verify the changes, Option 1 was used: disabling MQTT and CoAP communication 
 A callback method, `onActuatorCommandMessage()`, was implemented to process received actuator command messages. This method decodes the JSON payload into an `ActuatorData` object using the `DataUtil` utility and forwards it to the configured listener. The MQTT client was also updated to subscribe to the appropriate actuator command topic upon a successful connection, using topic-specific callbacks to ensure targeted handling.
 Additionally, the previously blocking `msgInfo.wait_for_publish()` call in the `publishMessage()` method was commented out to avoid deadlock and allow asynchronous message processing. The new functionality was verified using a dedicated integration test (`testNewActuatorCmdPubSub`), confirming that messages were correctly subscribed to, received, and routed, with expected log output validating the flow.
 
+- PIOT-CDA-10-004: The **DeviceDataManager** class was updated to transmit sensor and system performance data from the CDA to the GDA using MQTT. The `_handleUpstreamTransmission()` method was implemented to handle message publishing via the MQTT client. This method is now invoked within both `handleSensorMessage()` and `handleSystemPerformanceMessage()` to ensure outgoing data is forwarded appropriately.
+Additionally, the system monitors temperature sensor readings against configured thresholds, triggering an immediate actuation event if a floor or ceiling limit is exceeded. Integration was tested using the SenseHAT emulator and a running local MQTT broker, confirming correct data transmission and actuator activation upon simulated threshold breaches.
+
 
 
 
@@ -83,5 +86,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 - All part01 and part02 integration tests
 - MqttClientConnectorTest
 - DeviceDataManagerCallbackTest
+- DeviceDataManagerIntegrationTest
 
 EOF.
