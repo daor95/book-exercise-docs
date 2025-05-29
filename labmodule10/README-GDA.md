@@ -42,13 +42,17 @@ The `mosquitto.conf` file was customized to include TLS settings via an `include
 
 - PIOT-GDA-10-000: Git "labmodule10" branch created.
 
+- PIOT-GDA-10-001: The **MqttClientConnector** class was updated to support both authorization credentials and TLS-encrypted connections. This included integrating secure client parameter handling, loading credentials from external configuration files, and enabling certificate-based TLS using the `SimpleCertManagementUtil` utility. Several new configuration parameters and initialization methods (`initClientParameters`, `initSecureConnectionParameters`, and `initCredentialConnectionParameters`) were added to modularize and streamline setup.
+Additionally, the no-argument constructor was modified to call `initClientParameters`, ensuring all connection parameters are loaded at instantiation. Current functionality was verified by re-running existing test `MqttClientConnectorTest` without TLS enabled.
+
+
 
 
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
 
-URL: 
+URL: https://github.com/daor95/java-components/tree/labmodule10
 
 
 
@@ -70,7 +74,7 @@ your code to ensure it's correct. As for the tests you execute, you only need to
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 and part02 integration tests
-- 
+- MqttClientConnectorTest
 - 
 
 EOF.
