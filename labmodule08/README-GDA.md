@@ -493,6 +493,8 @@ Generic handler. No GET action taken: SensorMsg
 
   ---
 
+- PIOT-GDA-08-100: The code updates within the labmodule08 branch were reviewed and verified. All part01, part02, lab7 and lab8 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule08 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
+
 
 
 ### Code Repository and Branch
