@@ -8,9 +8,10 @@ Be sure to implement all the PIOT-GDA-* issues (requirements) listed.
 
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
-What does your implementation do? 
+What does your implementation do? The implementation provides full CoAP server functionality within the Gateway Device Application (GDA) as specified in Lab Module 08. It enables bidirectional communication with constrained devices using the CoAP protocol by supporting multiple resource endpoints and methods (GET, PUT, POST, DELETE). The system handles telemetry and performance data sent by client devices and can deliver actuator commands through CoAP’s observe functionality. The server registers resources in a hierarchical structure, receives sensor and system performance updates, and broadcasts actuator command updates to observing clients. It integrates with the DeviceDataManager to manage lifecycle and data flow based on configuration flags.
 
-How does your implementation work?
+How does your implementation work? The CoapServerGateway initializes the server (Californium CoAP) and dynamically registers three primary resource handlers (UpdateSystemPerformanceResourceHandler, UpdateTelemetryResourceHandler, and GetActuatorCommandResourceHandler) based on the enum ResourceNameEnum. Each handler implements all CoAP methods, with PUT being used to parse incoming JSON and dispatch data to the DeviceDataManager through a listener. The actuator resource uses the Observe mechanism to notify clients asynchronously upon command updates. Unit and integration tests validate server-client interactions, including successful GET, PUT, and OBSERVE operations. The entire module was committed under the labmodule08 branch and successfully merged into the main repository after test verification.
+
 
 Steps:
 
