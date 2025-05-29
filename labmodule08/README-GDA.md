@@ -73,6 +73,72 @@ The class extends `CoapResource` and implements the `IActuatorDataListener` inte
 A constructor accepting a single resource name was implemented. Within it, the resource was marked observable using `setObservable(true)`. A class-scoped `ActuatorData` variable was defined to maintain the latest actuation state.
 The `handleGET()` method was overridden to accept incoming GET requests, convert the current `ActuatorData` instance to JSON using `DataUtil`, and respond with this data using an appropriate CoAP `ResponseCode.CONTENT` response. The implementation includes logging for debugging and proper handling of the request lifecycle via `CoapExchange`.
 
+- PIOT-GDA-08-004: The `CoapServerGateway` and `DeviceDataManager` components were significantly extended to enable full support for dynamic and static CoAP resource handler registration and to integrate actuator command notification using the CoAP OBSERVE pattern.
+In the **`DeviceDataManager`**, support for actuator data listeners was added by implementing the `setActuatorDataListener(String name, IActuatorDataListener listener)` method. A class-scoped variable was used to hold a single listener instance, preparing the system for future actuator command delivery from the GDA to the CDA. Additionally, the private method `handleIncomingDataAnalysis` was optionally updated to forward incoming actuator data to the registered listener, ensuring the system is ready for Lab Module 10’s functionality.
+In the **`CoapServerGateway`**, the `initServer()` method was fully implemented to initialize the `CoapServer` instance and register default CoAP resources by internally creating and organizing them in a hierarchical structure based on `ResourceNameEnum` values. A helper method, `initDefaultResources()`, was introduced to create and configure instances of the resource handlers: `GetActuatorCommandResourceHandler`, `UpdateTelemetryResourceHandler` and `UpdateSystemPerformanceResourceHandler`.
+Each handler was properly initialized and, where applicable, associated with the `IDataMessageListener`. The `addResource()` method and a supporting `createAndAddResourceChain()` helper were implemented to break down the resource names into a hierarchical chain (e.g., `PIOT/ConstrainedDevice/SystemPerfMsg`) and register them into the server.
+Both internal (default) and external resource registration strategies were supported, providing the flexibility to add resource handlers at runtime or during server initialization.
+Finally, an integration test named **`CoapServerGatewayTest`** was created under the `programmingtheiot.part03.integration.connection` package. This test launched the CoAP server, performed a resource discovery using a `CoapClient`, and logged the discovered resource URIs and their attributes. After a wait period, the server was stopped. The test confirmed correct resource registration and server behavior.
+Additional CLI tests were conducted using the Californium tools to send GET and POST requests to specific resources, verifying that the server handled requests as expected. These resources included: `/PIOT/ConstrainedDevice/SensorMsg` and `/PIOT/ConstrainedDevice/SystemPerfMsg`.
+The results are:
+
+```text
+java -jar cf-client-4.0.0-SNAPSHOT.jar --method=GET coap://localhost:5683/PIOT/ConstrainedDevice/SystemPerfMsg
+04:28:57.608 WARN [Configuration]: Add missing module TCP.
+==[ CoAP Request ]=============================================
+MID    : 32638
+Token  : 588AEA48FCAC53DF
+Type   : CON
+Method : 0.01 - GET
+Options: {"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SystemPerfMsg"]}
+Payload: 0 Bytes
+===============================================================
+
+>>> UDP(localhost/127.0.0.1:5683)
+
+Time elapsed (ms): 11
+==[ CoAP Response ]============================================
+MID    : 18283
+Token  : 588AEA48FCAC53DF
+Type   : CON
+Status : 2.04 - CHANGED
+Options: {"Content-Format":"text/plain"}
+RTT    : 11 ms
+Payload: 54 Bytes
+---------------------------------------------------------------
+Update system perf data request handled: SystemPerfMsg
+===============================================================
+```
+
+```text
+java -jar cf-client-4.0.0-SNAPSHOT.jar --method=GET coap://localhost:5683/PIOT/ConstrainedDevice/SensorMsg
+05:19:59.084 WARN [Configuration]: Add missing module TCP.
+==[ CoAP Request ]=============================================
+MID    : 10740
+Token  : A4368B174EBDA421
+Type   : CON
+Method : 0.01 - GET
+Options: {"Uri-Host":"localhost", "Uri-Path":["PIOT","ConstrainedDevice","SensorMsg"]}
+Payload: 0 Bytes
+===============================================================
+
+>>> UDP(localhost/127.0.0.1:5683)
+
+Time elapsed (ms): 35
+==[ CoAP Response ]============================================
+MID    : 54961
+Token  : A4368B174EBDA421
+Type   : CON
+Status : 2.03 - VALID
+Options: {"Content-Format":"text/plain"}
+RTT    : 35 ms
+Payload: 47 Bytes
+---------------------------------------------------------------
+Generic handler. No GET action taken: SensorMsg
+===============================================================
+```
+
+
 
 
 
@@ -101,7 +167,7 @@ your code to ensure it's correct. As for the tests you execute, you only need to
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 and part02 integration tests
-- 
-- 
+- CoapClientToServerConnectorTest
+- CoapServerGatewayTest
 
 EOF.
