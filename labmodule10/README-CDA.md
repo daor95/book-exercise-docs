@@ -42,12 +42,16 @@ The `mosquitto.conf` file was customized to include TLS settings via an `include
 
 - PIOT-CDA-10-000: Git "labmodule10" branch created.
 
+- PIOT-CDA-10-001: The **MqttClientConnector** class in the CDA application was updated to support TLS-encrypted connections to an MQTT broker. This enhancement involved modifying the constructor to read encryption settings and certificate paths from the configuration file (`PiotConfig.props`). Additionally, the `connectClient()` method was extended to conditionally enable TLS using Python’s `ssl` module when encryption is configured.
+Specifically, the implementation checks if TLS is enabled, sets the secure port, and applies the appropriate PEM certificate using `tls_set()`. The client connection logic remains backward compatible, falling back to an unencrypted connection if TLS setup fails. These changes were verified by rerunning the `MqttClientConnectorTest` without TLS enabled, ensuring the connector continues to operate correctly in non-secure mode.
+
+
 
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
 
-URL: 
+URL: https://github.com/daor95/python-components/tree/labmodule10
 
 
 ### Unit Tests Executed
@@ -68,7 +72,7 @@ your code to ensure it's correct. As for the tests you execute, you only need to
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 and part02 integration tests
-- 
+- MqttClientConnectorTest
 - 
 
 EOF.
