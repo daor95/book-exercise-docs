@@ -48,6 +48,11 @@ Additionally, the no-argument constructor was modified to call `initClientParame
 - PIOT-GDA-10-002: The **MqttClientConnector** class was updated to subscribe to the CDA's MQTT topics for `SensorData`, `SystemPerformanceData`, and `ActuatorData` response messages. Option 1 was chosen for implementation, which handles all topic subscriptions through a single `messageArrived()` callback. Subscriptions were configured within the `connectComplete()` callback to ensure they are activated after a successful connection to the MQTT broker.
 Additionally, the class was refactored to use `MqttAsyncClient` instead of the synchronous `MqttClient`, supporting non-blocking behavior and avoiding potential deadlocks during message publishing. The **DeviceDataManager** class was updated by commenting out redundant subscription logic. Functionality was verified by running the existing test `MqttClientConnectorTest` and adding a new test case to confirm that actuator response messages are correctly received and handled.
 
+- PIOT-GDA-10-003: In this task, I began integrating logic into the `DeviceDataManager` to process incoming MQTT messages from the CDA, specifically `SensorData`, `SystemPerformanceData`, and `ActuatorData` responses. I opted for **Option 1**, which centralizes message handling in a single callback method. However, some of the detailed actions described in the task (including threshold crossing analysis, persistence logging, and upstream message forwarding) have not yet been implemented.
+The current progress establishes the foundational structure for message routing through `handleIncomingMessage`, but the core logic such as humidity threshold checking, actuator command generation, and interaction with the persistence client remains to be completed. The next steps will involve implementing `handleIncomingDataAnalysis`, parsing the configuration file for humidity control parameters, and completing the logic needed to trigger actuation events based on time-series humidity data analysis.
+To begin validating this behavior, a custom test method was created within a new class (`DeviceDataManagerSimpleCdaActuationTest`). This test simulates a sequence of `SensorData` messages with varying humidity values, including nominal and exceptional cases, to observe whether the actuation logic would be triggered once completed. However, since the threshold analysis and actuation logic are still pending, this test currently serves as a placeholder for future verification.
+
+
 
 
 
@@ -78,6 +83,6 @@ test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01 and part02 integration tests
 - MqttClientConnectorTest
-- 
+- DeviceDataManagerSimpleCdaActuationTest
 
 EOF.
