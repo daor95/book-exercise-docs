@@ -40,6 +40,7 @@ Output from the terminal where actuator activation can be observed after sending
 ![test_cloud_2](https://github.com/user-attachments/assets/04234e08-6fc2-4ad8-b98c-038d44784c5c)
 
 Demonstration with real time values obtained by manually selecting them using the slider on the SenseHat emulator:
+(Variables with Values of 1 is due to the Notion incorrect parsing of the json data. Both the original and the new parsing coexist.)
 ![cloud1](https://github.com/user-attachments/assets/da382165-1c11-4d71-9f2e-b92ae134c3d9)
 ![led_actuator](https://github.com/user-attachments/assets/6c8d641d-3108-4336-93c1-607106258a85)
 
