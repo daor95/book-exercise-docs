@@ -18,7 +18,7 @@ Steps:
 In addition, the necessary root certificate required for establishing a TLS connection with the Ubidots MQTT broker was downloaded and stored securely on the local filesystem. The `PiotConfig.props` configuration file was then updated under the `Cloud.GatewayService` section to include the path to the certificate file, as well as connection settings such as host, ports, QoS level, and base topic structure. 
 
 
-- PIOT-GDA-11-000: 
+- PIOT-GDA-11-000: Git "labmodule11" branch created.
 
 ### Code Repository and Branch
 
