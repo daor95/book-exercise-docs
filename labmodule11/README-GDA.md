@@ -8,9 +8,11 @@ Be sure to implement all the PIOT-GDA-* issues (requirements) listed.
 
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
-What does your implementation do? 
+**What does your implementation do?**
+The implementation for Lab Module 11 focused on establishing secure and functional end-to-end communication between the Constrained Device Application (CDA), the Gateway Device Application (GDA), and a cloud-based IoT platform, using Ubidots STEM as the cloud provider. A secure MQTT connection was configured using TLS encryption and token-based authentication, with all relevant parameters specified in the `PiotConfig.props` file. Enhancements were made to the `MqttClientConnector` to support cloud-based configurations and event listeners. A new interface, `ICloudClient`, was used to define the expected behaviors of cloud clients, including connecting, publishing data, subscribing to topics, and handling incoming messages. This interface was then implemented in the `CloudClientConnector`, which internally delegates MQTT tasks to `MqttClientConnector`.
 
-How does your implementation work?
+**How does your implementation work?**
+Once cloud connectivity was established, the system was extended to handle actuation logic based on cloud-side rules. A threshold-based trigger was configured in Ubidots to detect high temperature values and publish LED ON/OFF commands to a specific MQTT topic. The GDA subscribed to this topic after successful connection using the `IConnectionListener` mechanism. When an actuation message was received, it was parsed into an `ActuatorData` object and routed to the CDA, which is supposed to trigger a visual LED response using the Sense HAT emulator (I was not able to achive the emulator part). This process was confirmed through log outputs. Multiple screenshots were collected to demonstrate live data variations and the actuation behavior. Integration and manual tests confirmed successful bidirectional communication and cloud-triggered actuation in response to sensed environmental changes.
 
 Steps:
 
