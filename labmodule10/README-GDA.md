@@ -8,9 +8,10 @@ Be sure to implement all the PIOT-GDA-* issues (requirements) listed.
 
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
-What does your implementation do? 
+**What does your implementation do?** This implementation focuses on securing MQTT communication and enhancing the data-handling logic within the GDA as part of Lab Module 10. A local Mosquitto MQTT broker was configured with TLS encryption (PIOT-CFG-10-001), including the generation of a certificate chain using OpenSSL and configuring Mosquitto to listen on port 8883. TLS functionality was validated using terminal-based MQTT clients (`mosquitto_pub` and `mosquitto_sub`) and further verified via Wireshark to confirm encrypted TLS handshake traffic. 
 
-How does your implementation work?
+**How does your implementation work?** The `MqttClientConnector` was updated to support both authorization credentials and secure TLS connections. The client logic was refactored to use `MqttAsyncClient` to prevent deadlocks during asynchronous communication and to handle subscriptions to the CDA’s topics (`SensorData`, `SystemPerformanceData`, and `ActuatorData`) using a unified `messageArrived()` callback (Option 1). The `DeviceDataManager` was also partially updated to route incoming messages and begin handling them appropriately. While the detailed logic for humidity threshold analysis and actuation is not fully implemented yet, a test (`DeviceDataManagerSimpleCdaActuationTest`) was created to simulate sensor input. All updates were tested locally, reviewed, and merged successfully into the main development branch.
+
 
 Steps:
 
