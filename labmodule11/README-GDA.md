@@ -49,6 +49,8 @@ Variation of the data can be observed:
 ![cloud_temp](https://github.com/user-attachments/assets/3b0796fa-8a2a-4ff5-a249-069245e5530a)
 ![cloud_led_time](https://github.com/user-attachments/assets/f93c37d2-098e-49aa-b75b-5d03441533ee)
 
+- PIOT-GDA-11-100: The code updates within the labmodule11 branch were reviewed and verified. All part01, part02, part03 and part04 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule11 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
+
 
 ### Code Repository and Branch
 
@@ -74,7 +76,7 @@ some exceptions (such as your cloud connectivity tests). In such cases, they'll 
 your code to ensure it's correct. As for the tests you execute, you only need to list each
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
-- All part01, part02 and part03 integration tests
+- All part01, part02, part03 and part04 integration tests
 - MqttClientConnectorTest
 - CloudClientConnectorTest
 - Manual Integration Test (PIOT-GDA-11-004)
