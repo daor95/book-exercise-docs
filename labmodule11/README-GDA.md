@@ -20,6 +20,10 @@ In addition, the necessary root certificate required for establishing a TLS conn
 
 - PIOT-GDA-11-000: Git "labmodule11" branch created.
 
+- PIOT-GDA-11-001: The implementation focused on enhancing the **MqttClientConnector** class to support greater flexibility and modularity when interacting with MQTT brokers. The class was updated to load configuration parameters either from the default MQTT section or from a separate cloud gateway section in the `PiotConfig.props` file. To support this, two new constructors were added: one accepting a boolean flag and another accepting a string section name. The configuration loading logic was extracted into a new private method `initClientParameters()`, aligning with the design implemented in Lab Module 10.
+In addition, the class was extended with the ability to notify an external `IConnectionListener` of MQTT connection events, using a new `setConnectionListener()` method. To enable subclass and package-scoped access, new `protected` versions of `publishMessage`, `subscribeToTopic`, and `unsubscribeFromTopic` methods were introduced, each accepting raw topic strings and optionally a message listener. These were integrated into the existing public methods, which now delegate to the new implementations. The `connectComplete()` callback was updated to optionally subscribe to either local or cloud topics based on the `useCloudGatewayConfig` flag, supporting two subscription strategies. Integration test (`MqttClientConnectorTest`) was rerun using the local broker to validate backward compatibility and the correctness of the new behavior.
+
+
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
@@ -33,7 +37,7 @@ NOTE: The instructor will execute your unit tests. You only need to list each te
 (e.g. ConfigUtilTest, DataUtilTest, etc). Be sure to include all previous tests, too,
 since you need to ensure you haven't introduced regressions.
 
-- 
+- All part01, part02 and part03 unit tests
 - 
 - 
 
@@ -44,7 +48,7 @@ some exceptions (such as your cloud connectivity tests). In such cases, they'll 
 your code to ensure it's correct. As for the tests you execute, you only need to list each
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
-- 
+- All part01, part02 and part03 integration tests
 - 
 - 
 
