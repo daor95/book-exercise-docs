@@ -25,13 +25,16 @@ In addition, the class was extended with the ability to notify an external `ICon
 
 - PIOT-GDA-11-002: The Java interface named **ICloudClient** was created (it already existed) to define the contract for cloud-based pub/sub clients. The interface includes methods for connecting and disconnecting from the cloud service, publishing sensor and system performance data, subscribing and unsubscribing to cloud events, and setting a data message listener. This interface will serve as a foundational component for implementations such as `CloudClientConnector`, enabling standardized communication between edge devices and cloud platforms.
 
+- PIOT-GDA-11-003: A new Java class named **CloudClientConnector** has been implemented to enable cloud integration using the MQTT pub/sub paradigm. The class implements the `ICloudClient` interface and internally uses `MqttClientConnector` to handle all MQTT-related operations. Key functionalities include connecting and disconnecting from the cloud broker, publishing sensor and system performance data, and subscribing or unsubscribing to cloud-sourced events. The implementation also includes dynamic topic construction based on configuration, QoS settings, and message conversion to JSON.
+Additionally, `CloudClientConnector` was integrated into the `DeviceDataManager` class. A configuration flag enables or disables cloud connectivity, and upon activation, the manager connects to the cloud at startup and transmits relevant data. Incoming actuator commands from the cloud are also handled and routed appropriately. The implementation was verified using a integration test (`CloudClientConnectorTest`) with a sample configuration pointing to Ubidots' MQTT broker, demonstrating secure TLS connectivity and correct message delivery.
+
 
 
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
 
-URL: 
+URL: https://github.com/daor95/java-components/tree/labmodule11
 
 
 ### Unit Tests Executed
@@ -52,7 +55,7 @@ your code to ensure it's correct. As for the tests you execute, you only need to
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
 - All part01, part02 and part03 integration tests
-- 
-- 
+- MqttClientConnectorTest
+- CloudClientConnectorTest
 
 EOF.
