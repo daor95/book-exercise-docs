@@ -55,7 +55,7 @@ Additionally, the previously blocking `msgInfo.wait_for_publish()` call in the `
 - PIOT-CDA-10-004: The **DeviceDataManager** class was updated to transmit sensor and system performance data from the CDA to the GDA using MQTT. The `_handleUpstreamTransmission()` method was implemented to handle message publishing via the MQTT client. This method is now invoked within both `handleSensorMessage()` and `handleSystemPerformanceMessage()` to ensure outgoing data is forwarded appropriately.
 Additionally, the system monitors temperature sensor readings against configured thresholds, triggering an immediate actuation event if a floor or ceiling limit is exceeded. Integration was tested using the SenseHAT emulator and a running local MQTT broker, confirming correct data transmission and actuator activation upon simulated threshold breaches.
 
-
+- PIOT-CDA-10-100: The code updates within the labmodule10 branch were reviewed and verified. All part01, part02 and part3 applicable unit and integration tests were executed successfully, ensuring the correctness of the implementation. A git merge was performed between labmodule10 and the primary branch, followed by pushing the merged changes to the remote repository. Finally, the merge was verified using "git log --oneline default", confirming that the merge history was correctly logged.
 
 
 
