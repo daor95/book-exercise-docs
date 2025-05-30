@@ -12,6 +12,14 @@ What does your implementation do?
 
 How does your implementation work?
 
+Steps:
+
+- PIOT-CFG-11-001: A cloud-based IoT connectivity solution was successfully configured using the Ubidots STEM platform, which supports MQTT with TLS encryption and token-based authorization. An account was created on Ubidots STEM specifically for educational purposes, and a secure API token was generated to enable client authentication. This token was saved locally in a separate configuration file.
+In addition, the necessary root certificate required for establishing a TLS connection with the Ubidots MQTT broker was downloaded and stored securely on the local filesystem. The `PiotConfig.props` configuration file was then updated under the `Cloud.GatewayService` section to include the path to the certificate file, as well as connection settings such as host, ports, QoS level, and base topic structure. 
+
+
+- PIOT-GDA-11-000: 
+
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
