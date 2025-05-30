@@ -8,9 +8,11 @@ Be sure to implement all the PIOT-CDA-* issues (requirements) listed.
 
 NOTE: Include two full paragraphs describing your implementation approach by answering the questions listed below.
 
-What does your implementation do? 
+**What does your implementation do?** The implementation for Lab Module 10 focuses on securing MQTT communication and enabling full bidirectional data flow between the Constrained Device Application (CDA) and the Gateway Device Application (GDA). This includes support for TLS-encrypted connections using Mosquitto 2, secure transmission of sensor and system data, and the ability to receive actuator commands from the GDA. The MQTT broker was configured with TLS support using custom-generated certificates and validated using Mosquitto clients and Wireshark. On the CDA side, `MqttClientConnector` was enhanced to support TLS, subscribe to actuator command topics, and route received messages to the appropriate handler through `IDataMessageListener`. The `DeviceDataManager` was extended to process actuator commands and transmit sensor data upstream using MQTT, with logic in place to react to threshold violations (e.g., extreme temperatures) by triggering actuator responses.
 
-How does your implementation work?
+
+**How does your implementation work?** To ensure modularity and maintainability, the CDA components were modified and tested incrementally. Each new feature was accompanied by corresponding test cases, including `DeviceDataManagerCallbackTest` for validating actuator command handling and `DeviceDataManagerIntegrationTest` for end-to-end testing with live data and MQTT integration. Communication logic was made non-blocking to avoid deadlocks, particularly around message publishing. After completing development, all unit and integration tests from parts 01, 02, and 03 were rerun to confirm no regressions were introduced. Finally, the changes were merged from the `labmodule10` branch into the main branch and pushed to the remote repository, completing the implementation and integration process.
+
 
 Steps:
 
