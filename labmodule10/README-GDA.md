@@ -45,6 +45,9 @@ The `mosquitto.conf` file was customized to include TLS settings via an `include
 - PIOT-GDA-10-001: The **MqttClientConnector** class was updated to support both authorization credentials and TLS-encrypted connections. This included integrating secure client parameter handling, loading credentials from external configuration files, and enabling certificate-based TLS using the `SimpleCertManagementUtil` utility. Several new configuration parameters and initialization methods (`initClientParameters`, `initSecureConnectionParameters`, and `initCredentialConnectionParameters`) were added to modularize and streamline setup.
 Additionally, the no-argument constructor was modified to call `initClientParameters`, ensuring all connection parameters are loaded at instantiation. Current functionality was verified by re-running existing test `MqttClientConnectorTest` without TLS enabled.
 
+- PIOT-GDA-10-002: The **MqttClientConnector** class was updated to subscribe to the CDA's MQTT topics for `SensorData`, `SystemPerformanceData`, and `ActuatorData` response messages. Option 1 was chosen for implementation, which handles all topic subscriptions through a single `messageArrived()` callback. Subscriptions were configured within the `connectComplete()` callback to ensure they are activated after a successful connection to the MQTT broker.
+Additionally, the class was refactored to use `MqttAsyncClient` instead of the synchronous `MqttClient`, supporting non-blocking behavior and avoiding potential deadlocks during message publishing. The **DeviceDataManager** class was updated by commenting out redundant subscription logic. Functionality was verified by running the existing test `MqttClientConnectorTest` and adding a new test case to confirm that actuator response messages are correctly received and handled.
+
 
 
 
