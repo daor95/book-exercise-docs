@@ -12,11 +12,17 @@ What does your implementation do?
 
 How does your implementation work?
 
+
+# MOST OF THE REQUIRED IMPLEMENTATION WAS ALREADY COMPLETED ON PREVIOUS PIOTS.
+DUE TO THE DEADLINE AND COMPLEXITY, I DID NOT HAVE TIME TO COMPLETE THE FLOW STARTED ON THE CDA.
+THE OBJECTIVE WAS TO IMPLEMENT THE HANDLERS FOR THE SMOKE DETECTOR SENSOR AND THE FIRE EXTINGUISHER ACTUATOR.
+
+
 ### Code Repository and Branch
 
 NOTE: Be sure to include the branch.
 
-URL: 
+URL: https://github.com/daor95/java-components/tree/labmodule12
 
 
 
@@ -26,7 +32,7 @@ NOTE: The instructor will execute your unit tests. You only need to list each te
 (e.g. ConfigUtilTest, DataUtilTest, etc). Be sure to include all previous tests, too,
 since you need to ensure you haven't introduced regressions.
 
-- 
+- ALL
 - 
 - 
 
@@ -37,7 +43,7 @@ some exceptions (such as your cloud connectivity tests). In such cases, they'll 
 your code to ensure it's correct. As for the tests you execute, you only need to list each
 test case below (e.g. SensorSimAdapterManagerTest, DeviceDataManagerTest, etc.)
 
-- 
+- ALL
 - 
 - 
 
